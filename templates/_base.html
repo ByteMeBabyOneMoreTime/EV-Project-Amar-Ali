@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="body"> 
+    {% include "components/navbar.html" %}
+    {% block body %}
+    
+    {% endblock body %}  
+    {% include "components/footer.html" %}  
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/preline@2.7.0/dist/preline.min.js"></script>
+    <script>
+        // Initialize components on first load
+        document.addEventListener('DOMContentLoaded', function() {
+            window.HSStaticMethods.autoInit();
+        });
+
+        // Reinitialize after HTMX swaps
+        document.body.addEventListener('htmx:afterSwap', function(event) {
+            // Reinit Preline components
+            window.HSStaticMethods.autoInit();
+            
+            // Reinit Flowbite components
+            if (window.Flowbite) {
+                Flowbite.init();
+            }
+        });
+    </script>
+{% block script %}
+
+{% endblock script %}
+</body>
+
+
+</html>
