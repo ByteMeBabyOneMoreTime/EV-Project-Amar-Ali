@@ -15,7 +15,8 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     # Custom apps
     'home',
-    
+    'Employee_management',
+    'announcement',
     # Admin panel apps and installed apps
     "unfold",  # before django.contrib.admin
      

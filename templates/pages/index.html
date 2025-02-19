@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% load static %}
 
 {% block title %}
 EV Services India - Driving the Future of Sustainable Mobility
@@ -6,9 +7,7 @@ EV Services India - Driving the Future of Sustainable Mobility
 
 {% block body %}
 <div class="min-h-screen flex flex-col">
-  <!-- Header -->
   <main>
-    <!-- Hero Section with Carousel -->
     <section class="relative bg-blue-900 text-white py-20">
       <div class="absolute inset-0 overflow-hidden">
         <div id="hero-carousel" class="relative w-full h-full" x-data="carousel()">
@@ -49,7 +48,6 @@ EV Services India - Driving the Future of Sustainable Mobility
       </div>
     </section>
 
-    <!-- Key Statistics Section -->
     <section class="py-16 bg-gray-100">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Our Impact</h2>
@@ -86,7 +84,6 @@ EV Services India - Driving the Future of Sustainable Mobility
       </div>
     </section>
 
-    <!-- Services Overview Section -->
     <section class="py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
@@ -128,7 +125,6 @@ EV Services India - Driving the Future of Sustainable Mobility
       </div>
     </section>
 
-    <!-- Announcements Section -->
     <section class="py-16 bg-gray-100">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Latest Announcements</h2>
@@ -155,7 +151,6 @@ EV Services India - Driving the Future of Sustainable Mobility
       </div>
     </section>
 
-    <!-- Referral Program Section -->
     <section class="py-16 bg-blue-50">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center">
@@ -174,7 +169,6 @@ EV Services India - Driving the Future of Sustainable Mobility
       </div>
     </section>
 
-    <!-- Gallery Section -->
     <section class="py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">EV Gallery</h2>
@@ -196,83 +190,5 @@ EV Services India - Driving the Future of Sustainable Mobility
 {% endblock body %}
 
 {% block script %}
-<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-<script src="https://unpkg.com/htmx.org@1.9.4"></script>
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<script>
-  // Carousel functionality
-  function carousel() {
-    return {
-      currentSlide: 0,
-      totalSlides: 3,
-      autoplayInterval: null,
-      init() {
-        this.startAutoplay();
-      },
-      next() {
-        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-      },
-      prev() {
-        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-      },
-      startAutoplay() {
-        this.autoplayInterval = setInterval(() => {
-          this.next();
-        }, 5000);
-      },
-      stopAutoplay() {
-        clearInterval(this.autoplayInterval);
-      }
-    }
-  }
-
-  // Lazy loading images
-  document.addEventListener('DOMContentLoaded', function() {
-    var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
-
-    if ("IntersectionObserver" in window) {
-      let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            let lazyImage = entry.target;
-            lazyImage.src = lazyImage.dataset.src;
-            lazyImage.classList.remove("lazy");
-            lazyImageObserver.unobserve(lazyImage);
-          }
-        });
-      });
-
-      lazyImages.forEach(function(lazyImage) {
-        lazyImageObserver.observe(lazyImage);
-      });
-    } else {
-      // Fallback for browsers without IntersectionObserver support
-      let lazyLoadThrottleTimeout;
-      function lazyLoad() {
-        if(lazyLoadThrottleTimeout) {
-          clearTimeout(lazyLoadThrottleTimeout);
-        }
-
-        lazyLoadThrottleTimeout = setTimeout(function() {
-          let scrollTop = window.pageYOffset;
-          lazyImages.forEach(function(img) {
-            if(img.offsetTop < (window.innerHeight + scrollTop)) {
-              img.src = img.dataset.src;
-              img.classList.remove('lazy');
-            }
-          });
-          if(lazyImages.length == 0) { 
-            document.removeEventListener("scroll", lazyLoad);
-            window.removeEventListener("resize", lazyLoad);
-            window.removeEventListener("orientationChange", lazyLoad);
-          }
-        }, 20);
-      }
-
-      document.addEventListener("scroll", lazyLoad);
-      window.addEventListener("resize", lazyLoad);
-      window.addEventListener("orientationChange", lazyLoad);
-    }
-  });
-</script>
+<script src="{% static "index.js" %}"></script>
 {% endblock script %}
