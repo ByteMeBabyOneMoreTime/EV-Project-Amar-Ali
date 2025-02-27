@@ -1,0 +1,353 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}
+Announcements - EV Services India
+{% endblock title %}
+
+{% block body %}
+<div class="min-h-screen flex flex-col font-sans">
+  <!-- Hero Section -->
+  <section class="relative bg-blue-900 text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">Official Announcements</h1>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto">Stay updated with the latest news and important updates from EV Services India</p>
+    </div>
+  </section>
+
+  <!-- Announcements Grid -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center mb-12">
+        <h2 class="text-3xl font-bold">Latest Updates</h2>
+        <div class="relative w-64">
+          <input type="text" placeholder="Search announcements..."
+                 class="w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute right-3 top-3 text-gray-400"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Announcement Card 1 -->
+        <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 announcement-card">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm text-blue-600 font-semibold">New Feature • 15 Oct 2023</span>
+              <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Priority</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Enhanced Payment Security</h3>
+            <p class="text-gray-600 mb-4">We've upgraded our payment gateway with additional security layers...</p>
+            <div class="flex items-center justify-between">
+              <a href="#" class="text-blue-600 hover:text-blue-800 flex items-center">
+                Read More
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <button class="text-green-600 hover:text-green-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                     fill="currentColor">
+                  <path d="M19.3 8.2c-.4-2.4-2.4-4.3-4.8-4.3-1.8 0-3.3 1-4 2.5-.7-1.5-2.2-2.5-4-2.5-2.4 0-4.4 1.9-4.8 4.3C1.4 9.2 1 10.6 1 12c0 4.1 3.6 8.3 10 12 6.4-3.7 10-7.9 10-12 0-1.4-.4-2.8-1.7-3.8z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Announcement Card 2 - Government Update -->
+        <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 announcement-card">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm text-blue-600 font-semibold">Policy Update • 12 Oct 2023</span>
+              <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Alert</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">New EV Subsidy Guidelines</h3>
+            <p class="text-gray-600 mb-4">Government announces revised subsidy structure for EV purchases...</p>
+            <div class="flex items-center justify-between">
+              <a href="#" class="text-blue-600 hover:text-blue-800 flex items-center">
+                Read More
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <button class="text-green-600 hover:text-green-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                     fill="currentColor">
+                  <path d="M19.3 8.2c-.4-2.4-2.4-4.3-4.8-4.3-1.8 0-3.3 1-4 2.5-.7-1.5-2.2-2.5-4-2.5-2.4 0-4.4 1.9-4.8 4.3C1.4 9.2 1 10.6 1 12c0 4.1 3.6 8.3 10 12 6.4-3.7 10-7.9 10-12 0-1.4-.4-2.8-1.7-3.8z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Announcement Card 3 -->
+        <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 announcement-card">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm text-blue-600 font-semibold">Maintenance • 10 Oct 2023</span>
+              <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Notice</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Scheduled Maintenance</h3>
+            <p class="text-gray-600 mb-4">Our services will be down for maintenance on 15th October...</p>
+            <div class="flex items-center justify-between">
+              <a href="#" class="text-blue-600 hover:text-blue-800 flex items-center">
+                Read More
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <button class="text-green-600 hover:text-green-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                     fill="currentColor">
+                  <path d="M19.3 8.2c-.4-2.4-2.4-4.3-4.8-4.3-1.8 0-3.3 1-4 2.5-.7-1.5-2.2-2.5-4-2.5-2.4 0-4.4 1.9-4.8 4.3C1.4 9.2 1 10.6 1 12c0 4.1 3.6 8.3 10 12 6.4-3.7 10-7.9 10-12 0-1.4-.4-2.8-1.7-3.8z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Announcement Card 4 -->
+        <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 announcement-card">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm text-blue-600 font-semibold">Event • 8 Oct 2023</span>
+              <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Event</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">EV Expo 2023</h3>
+            <p class="text-gray-600 mb-4">Join us at the EV Expo 2023 to explore the latest in electric vehicles...</p>
+            <div class="flex items-center justify-between">
+              <a href="#" class="text-blue-600 hover:text-blue-800 flex items-center">
+                Read More
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <button class="text-green-600 hover:text-green-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                     fill="currentColor">
+                  <path d="M19.3 8.2c-.4-2.4-2.4-4.3-4.8-4.3-1.8 0-3.3 1-4 2.5-.7-1.5-2.2-2.5-4-2.5-2.4 0-4.4 1.9-4.8 4.3C1.4 9.2 1 10.6 1 12c0 4.1 3.6 8.3 10 12 6.4-3.7 10-7.9 10-12 0-1.4-.4-2.8-1.7-3.8z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Announcement Card 5 -->
+        <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 announcement-card">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm text-blue-600 font-semibold">Update • 5 Oct 2023</span>
+              <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Update</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">New Service Centers</h3>
+            <p class="text-gray-600 mb-4">We have opened new service centers in major cities...</p>
+            <div class="flex items-center justify-between">
+              <a href="#" class="text-blue-600 hover:text-blue-800 flex items-center">
+                Read More
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <button class="text-green-600 hover:text-green-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                     fill="currentColor">
+                  <path d="M19.3 8.2c-.4-2.4-2.4-4.3-4.8-4.3-1.8 0-3.3 1-4 2.5-.7-1.5-2.2-2.5-4-2.5-2.4 0-4.4 1.9-4.8 4.3C1.4 9.2 1 10.6 1 12c0 4.1 3.6 8.3 10 12 6.4-3.7 10-7.9 10-12 0-1.4-.4-2.8-1.7-3.8z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Announcement Card 6 -->
+        <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 announcement-card">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm text-blue-600 font-semibold">Promotion • 3 Oct 2023</span>
+              <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">Promotion</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Limited Time Offer</h3>
+            <p class="text-gray-600 mb-4">Get 20% off on your next service booking...</p>
+            <div class="flex items-center justify-between">
+              <a href="#" class="text-blue-600 hover:text-blue-800 flex items-center">
+                Read More
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <button class="text-green-600 hover:text-green-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                     fill="currentColor">
+                  <path d="M19.3 8.2c-.4-2.4-2.4-4.3-4.8-4.3-1.8 0-3.3 1-4 2.5-.7-1.5-2.2-2.5-4-2.5-2.4 0-4.4 1.9-4.8 4.3C1.4 9.2 1 10.6 1 12c0 4.1 3.6 8.3 10 12 6.4-3.7 10-7.9 10-12 0-1.4-.4-2.8-1.7-3.8z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-12 flex justify-center space-x-2">
+        <button class="px-4 py-2 bg-blue-900 text-white rounded-lg">1</button>
+        <button class="px-4 py-2 hover:bg-gray-100 rounded-lg">2</button>
+        <button class="px-4 py-2 hover:bg-gray-100 rounded-lg">3</button>
+        <button class="px-4 py-2 hover:bg-gray-100 rounded-lg">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp Integration Section -->
+  <section class="py-16 bg-green-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-2xl mx-auto">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-6"
+             viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.5 2c.276 0 .5.224.5.5v19c0 .276-.224.5-.5.5h-11c-.276 0-.5-.224-.5-.5v-19c0-.276.224-.5.5-.5h11zm-5.5 4c-3.033 0-5.5 2.467-5.5 5.5s2.467 5.5 5.5 5.5 5.5-2.467 5.5-5.5-2.467-5.5-5.5-5.5zm0 2c1.93 0 3.5 1.57 3.5 3.5s-1.57 3.5-3.5 3.5-3.5-1.57-3.5-3.5 1.57-3.5 3.5-3.5zm-1.5 2v2h-2v2h2v2h2v-2h2v-2h-2v-2h-2z"/>
+        </svg>
+        <h2 class="text-3xl font-bold mb-4">Get Updates on WhatsApp</h2>
+        <p class="text-xl mb-8">Receive important announcements directly on your WhatsApp</p>
+        <button id="whatsapp-subscribe" class="bg-white text-green-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300">
+          Subscribe Now
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Announcement Categories -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Announcement Categories</h2>
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="p-6 bg-blue-50 rounded-xl text-center hover:bg-blue-100 transition duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-blue-900"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <h3 class="text-xl font-bold my-4">Policy Updates</h3>
+          <p class="text-gray-600">Government regulations and policy changes</p>
+        </div>
+        <div class="p-6 bg-blue-50 rounded-xl text-center hover:bg-blue-100 transition duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-blue-900"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <h3 class="text-xl font-bold my-4">Maintenance Alerts</h3>
+          <p class="text-gray-600">Scheduled maintenance and service updates</p>
+        </div>
+        <div class="p-6 bg-blue-50 rounded-xl text-center hover:bg-blue-100 transition duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-blue-900"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <h3 class="text-xl font-bold my-4">Event Announcements</h3>
+          <p class="text-gray-600">Upcoming events and webinars</p>
+        </div>
+        <div class="p-6 bg-blue-50 rounded-xl text-center hover:bg-blue-100 transition duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-blue-900"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <h3 class="text-xl font-bold my-4">Promotions</h3>
+          <p class="text-gray-600">Special offers and discounts</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-blue-900">ई-रिक्शा सुरक्षा केंद्र (E-Rickshaw Security Center)</h2>
+                <p class="text-xl text-gray-600 mb-8">मात्र ₹799 में पूर्ण सेवा पैकेज (Complete Service Package for Only ₹799)</p>
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>निःशुल्क गाड़ी सर्विस (Free Vehicle Service)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>निःशुल्क इंजन ऑयल (Free Engine Oil)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>मशीन द्वारा गाड़ी की सफाई (Vehicle Cleaning by Machine)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>1 माह की हेडलाइट गारंटी (1 Month Headlight Warranty)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>हॉर्न और इंडिकेटर की वारंटी (Horn & Indicator Warranty)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>दुर्घटना पर ₹100,000 तक की सहायता (Accident Support up to ₹100,000)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>मृत्यु पर ₹200,000 तक की सहायता (Death Support up to ₹200,000)</span>
+                        </div>
+                    </div>
+                    <img src="https://picsum.photos/500/300?random=14" alt="Service Package" class="rounded-lg shadow-md">
+                </div>
+                <div class="mt-8 text-center">
+                    <p class="text-gray-600 mb-4">इस पैकेज को खरीद कर अपनी जिंदगी को खुशहाल बनाएँ। (Buy this package and make your life secure and happy.)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+{% endblock body %}
+
+{% block script %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Announcement interaction functionality
+  document.querySelectorAll('.announcement-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if(!e.target.closest('a, button')) {
+        card.querySelector('a').click();
+      }
+    });
+  });
+
+  // WhatsApp subscription handler
+  document.querySelector('#whatsapp-subscribe').addEventListener('click', () => {
+    window.location.href = 'https://api.whatsapp.com/send?phone=919875609901&text=Subscribe%20to%20Updates';
+  });
+});
+</script>
+{% endblock script %}
+
