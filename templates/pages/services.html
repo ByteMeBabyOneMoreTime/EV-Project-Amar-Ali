@@ -2,16 +2,337 @@
 {% load static %}
 
 {% block title %}
-Services
+E-Rickshaw Suraksha Kendra - EV Services India
 {% endblock title %}
 
 {% block body %}
-<!-- Body ki sari bakchodi yehi tak rakhna-->
+<div class="min-h-screen flex flex-col font-sans">
+  <!-- Hero Section -->
+  <section class="relative bg-blue-900 text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">ई-रिक्शा सुरक्षा केंद्र</h1>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto">वाहन सुरक्षा और निर्बध रखरखाव का विश्वसनीय समाधान</p>
+      <div class="mt-8">
+        <img src="https://5.imimg.com/data5/SELLER/Default/2023/7/325767170/DX/OY/RY/121148800/e-rickshaw-repairing-service-500x500.jpg" alt="E-Rickshaw Service" class="rounded-lg shadow-xl mx-auto">
+      </div>
+    </div>
+  </section>
 
+  <!-- Price Banner -->
+  <div class="bg-green-600 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-2xl font-bold">सिर्फ  ₹599,₹799 में पूर्ण सुरक्षा पैकेज</p>
+    </div>
+  </div>
+
+  <!-- Services Grid -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">हमारी सेवाएं</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">घर पर सेवा</h3>
+          <p class="text-gray-600">विशेषज्ञ तकनीशियन आपके स्थान पर उपस्थित</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+          <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">निःशुल्क जांच</h3>
+          <p class="text-gray-600">बैटरी, तेल और एसी की विस्तृत जांच</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+          <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">सफाई सेवा</h3>
+          <p class="text-gray-600">मशीन द्वारा गाड़ी की सफाई</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+          <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">गारंटी सेवा</h3>
+          <p class="text-gray-600">हेडलाइट और हॉर्न की गारंटी</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+          <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">एमर्जेंसी सहायता</h3>
+          <p class="text-gray-600">दुर्घटना पर ₹100,000 तक की सहायता</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+          <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">मृत्यु सहायता</h3>
+          <p class="text-gray-600">मृत्यु पर ₹200,000 तक की सहायता</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+          <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">निःशुल्क इंजन ऑयल</h3>
+          <p class="text-gray-600">प्रत्येक सेवा के साथ निःशुल्क इंजन ऑयल</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+          <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">24/7 समर्थन</h3>
+          <p class="text-gray-600">हमेशा उपलब्ध ग्राहक समर्थन</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Package Details -->
+  <section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 border-4 border-blue-900">
+        <h2 class="text-4xl font-bold mb-4 text-blue-900">ई-रिक्शा सुरक्षा केंद्र</h2>
+        <p class="text-2xl text-gray-700 mb-6 font-semibold">सिर्फ ₹799 में संपूर्ण सुरक्षा पैकेज</p>
+        <div class="grid md:grid-cols-2 gap-8 text-left">
+          <div class="space-y-4">
+            <ul class="text-gray-700 text-lg space-y-3">
+              <li class="flex items-center">
+                <svg class="h-6 w-6 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                निःशुल्क गाड़ी सर्विस
+              </li>
+              <li class="flex items-center">
+                <svg class="h-6 w-6 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                निःशुल्क इंजन ऑयल
+              </li>
+              <li class="flex items-center">
+                <svg class="h-6 w-6 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                मशीन द्वारा गाड़ी की सफाई
+              </li>
+              <li class="flex items-center">
+                <svg class="h-6 w-6 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                1 माह की हेडलाइट गारंटी
+              </li>
+              <li class="flex items-center">
+                <svg class="h-6 w-6 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                1 माह की  हॉर्न और इंडिकेटर की वारंटी
+              </li>
+              <li class="flex items-center">
+                <svg class="h-6 w-6 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                दुर्घटना पर ₹100,000 तक की सहायता
+              </li>
+              <li class="flex items-center">
+                <svg class="h-6 w-6 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                मृत्यु पर ₹200,000 तक की सहायता
+              </li>
+            </ul>
+          </div>
+          <div class="relative">
+            <img src="https://images.news18.com/ibnlive/uploads/2022/09/shutterstock_2141962959.jpg" alt="Service Process" class="rounded-xl shadow-lg">
+            <div class="absolute -bottom-6 -right-6 bg-blue-900 text-white p-6 rounded-lg shadow-md text-center">
+              <p class="text-3xl font-bold">₹799</p>
+              <p class="text-lg">महीने के पैकेज</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 text-center">
+          <p class="text-gray-700 mb-4 text-lg">इस पैकेज को खरीद कर अपनी जिंदगी को खुशहाल बनाएँ।</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 border-4 border-blue-900">
+        <h2 class="text-4xl font-bold mb-4 text-blue-900">ई-रिक्शा सुरक्षा केंद्र</h2>
+        <p class="text-2xl text-gray-700 mb-6 font-semibold">सिर्फ 549 में संपूर्ण सुरक्षा पैकेज</p>
+        <div class="grid md:grid-cols-2 gap-8 text-left">
+          <div class="space-y-4">
+            <ul class="text-gray-700 text-lg space-y-3">
+              <li class="flex items-center">
+                <svg class="h-6 w-6 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                निःशुल्क गाड़ी सर्विस
+              </li>
+              <li class="flex items-center">
+                <svg class="h-6 w-6 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                निःशुल्क इंजन ऑयल
+              </li>
+              <li class="flex items-center">
+                <svg class="h-6 w-6 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                मशीन द्वारा गाड़ी की सफाई
+              </li>
+              <li class="flex items-center">
+                <svg class="h-6 w-6 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                1 माह की हेडलाइट गारंटी
+              </li>
+              <li class="flex items-center">
+                <svg class="h-6 w-6 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                1 माह की  हॉर्न और इंडिकेटर की वारंटी
+              </li>
+            </ul>
+          </div>
+          <div class="relative">
+            <img src="https://i.ibb.co/CqbSwKd/First-ever-female-E-Rickshaw-Driver-Inspirational-Story-1280x720.jpg" alt="Service Process" class="rounded-xl shadow-lg">
+            <div class="absolute -bottom-6 -right-6 bg-blue-900 text-white p-6 rounded-lg shadow-md text-center">
+              <p class="text-3xl font-bold">₹549</p>
+              <p class="text-lg">महीने के पैकेज</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 text-center">
+          <p class="text-gray-700 mb-4 text-lg">इस पैकेज को खरीद कर अपनी जिंदगी को खुशहाल बनाएँ।</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Registration Form -->
+  <section class="py-16 bg-blue-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8">
+        <h2 class="text-2xl font-bold mb-6 text-center">सेवा पंजीकरण फॉर्म</h2>
+        <form class="space-y-6">
+          <div>
+            <label class="block text-gray-700 mb-2">पूरा नाम</label>
+            <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-2">ईमेल आईडी</label>
+            <input type="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-2">फोन नंबर</label>
+            <input type="tel" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-2">वाहन नंबर</label>
+            <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+            अभी पंजीकरण करें
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">ग्राहक प्रतिक्रिया</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <img src="https://picsum.photos/100/100?random=15" alt="Customer" class="w-16 h-16 rounded-full mx-auto mb-4">
+          <p class="text-gray-600 mb-4">"सर्विस क्वालिटी और टीम का व्यवहार बेहतरीन!"</p>
+          <p class="font-semibold">- राजेश कुमार, पटना</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <img src="https://picsum.photos/100/100?random=16" alt="Customer" class="w-16 h-16 rounded-full mx-auto mb-4">
+          <p class="text-gray-600 mb-4">"मुझे इस सेवा से बहुत संतुष्टि हुई। हर बार समय पर सेवा मिलती है।"</p>
+          <p class="font-semibold">- प्रिया शर्मा, मुंबई</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <img src="https://picsum.photos/100/100?random=17" alt="Customer" class="w-16 h-16 rounded-full mx-auto mb-4">
+          <p class="text-gray-600 mb-4">"यह कार्यक्रम मेरे लिए एक गेम चेंजर साबित हुआ!"</p>
+          <p class="font-semibold">- अजय सिंह, दिल्ली</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">सामान्य प्रश्न</h2>
+      <div class="space-y-4">
+        <div class="bg-white p-6 rounded-lg shadow-md faq-item">
+          <h3 class="text-xl font-semibold mb-2">सेवा का समय कितना लगता है?</h3>
+          <p class="text-gray-600">सामान्य सर्विस में 2-3 घंटे का समय लगता है</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md faq-item">
+          <h3 class="text-xl font-semibold mb-2">क्या मुझे सेवा के लिए अपॉइंटमेंट लेना होगा?</h3>
+          <p class="text-gray-600">हाँ, सेवा के लिए अपॉइंटमेंट लेना जरूरी है। आप ऑनलाइन पंजीकरण फॉर्म के माध्यम से अपॉइंटमेंट ले सकते हैं।</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md faq-item">
+          <h3 class="text-xl font-semibold mb-2">क्या मैं अपनी सेवा की स्थिति कैसे चेक कर सकता हूँ?</h3>
+          <p class="text-gray-600">आप अपनी सेवा की स्थिति अपने डैशबोर्ड पर चेक कर सकते हैं। सेवा की स्थिति के अपडेट रियल-टाइम में उपलब्ध होंगे।</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md faq-item">
+          <h3 class="text-xl font-semibold mb-2">क्या मैं अपनी सेवा को कैंसिल कर सकता हूँ?</h3>
+          <p class="text-gray-600">हाँ, आप अपनी सेवा को कैंसिल कर सकते हैं। कृपया डैशबोर्ड पर जाएं और कैंसिलेशन विकल्प का उपयोग करें।</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 {% endblock body %}
 
 {% block script %}
-
-<!--Script yaha add karna lekin alag se koi cdn mat use karna-->
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Accordion functionality for FAQs
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+});
+</script>
 {% endblock script %}
+

@@ -1,17 +1,289 @@
 {% extends "_base.html" %}
-{% load static %}
 
 {% block title %}
-About Us
+About Us / हमारे बारे में - EV Services India
 {% endblock title %}
 
 {% block body %}
-<!-- Body ki sari bakchodi yehi tak rakhna-->
+<div class="min-h-screen flex flex-col font-sans">
+  <!-- Header (Consistent with Home Page) -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <!-- Navigation can be added here if needed -->
+  </header>
 
+  <main>
+    <!-- Hero Section -->
+    <section class="relative bg-blue-900 text-white py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">About US / EV-Rickshaw Suraksha Kendra के बारे में</h1>
+        <p class="text-2xl max-w-3xl mx-auto">
+          A Government of India Initiative Accelerating Sustainable Mobility and a Greener Future<br>
+          भारतीय सरकार की पहल, जो स्थायी गतिशीलता और हरित भविष्य की ओर अग्रसर है
+        </p>
+      </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- Mission Card -->
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h2 class="text-3xl font-bold mb-4">Our Mission / हमारा लक्ष्य</h2>
+            <p class="text-gray-900 leading-relaxed">
+              To revolutionize India's transportation landscape by providing accessible, secure, and user-centric EV services while promoting environmental sustainability.<br><hr>
+              भारत के परिवहन क्षेत्र में क्रांति लाने के लिए, सुलभ, सुरक्षित और उपयोगकर्ता-केंद्रित EV सेवाओं के माध्यम से पर्यावरणीय स्थिरता को बढ़ावा देना।
+            </p>
+          </div>
+          <!-- Vision Card -->
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <h2 class="text-3xl font-bold mb-4">Our Vision / हमारा दृष्टिकोण</h2>
+            <p class="text-gray-900 leading-relaxed">
+              To become India's most trusted EV services platform, pioneering the nation’s transition to 100% electric mobility by 2040.<br> <hr>
+              भारत का सबसे विश्वसनीय EV सेवाओं का मंच बनना, 2040 तक 100% इलेक्ट्रिक गतिशीलता की ओर राष्ट्र का मार्गदर्शन करना।
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Our Journey / हमारी यात्रा</h2>
+        <div class="relative">
+          <div class="absolute left-1/2 w-1 bg-gray-300 h-full transform -translate-x-1/2"></div>
+          
+          <!-- Timeline Item 1 -->
+          <div class="mb-12 flex justify-between items-center w-full">
+            <div class="w-5/12 hidden md:block"></div>
+            <div class="z-10 w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">1</div>
+            <div class="w-5/12 p-6 bg-white rounded-xl shadow-md">
+              <h3 class="text-xl font-bold mb-2">2019: Initiative Launched / 2019: पहल की शुरुआत</h3>
+              <p>
+                Recognized by NITI Aayog as part of National Electric Mobility Mission.<br>
+                राष्ट्रीय इलेक्ट्रिक मोबिलिटी मिशन के अंतर्गत NITI आयोग द्वारा मान्यता प्राप्त।
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="mb-12 flex justify-between items-center w-full flex-row-reverse">
+            <div class="w-5/12 hidden md:block"></div>
+            <div class="z-10 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">2</div>
+            <div class="w-5/12 p-6 bg-white rounded-xl shadow-md">
+              <h3 class="text-xl font-bold mb-2">2021: Platform Pilot / 2021: प्लेटफ़ॉर्म पायलट</h3>
+              <p>
+                Successfully onboarded 10,000+ EV users in Delhi NCR and refined our service model.<br>
+                दिल्ली NCR में 10,000+ EV उपयोगकर्ताओं को सफलतापूर्वक शामिल किया गया और हमारे सेवा मॉडल को बेहतर बनाया गया।
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="mb-12 flex justify-between items-center w-full">
+            <div class="w-5/12 hidden md:block"></div>
+            <div class="z-10 w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">3</div>
+            <div class="w-5/12 p-6 bg-white rounded-xl shadow-md">
+              <h3 class="text-xl font-bold mb-2">2022: National Expansion / 2022: राष्ट्रीय विस्तार</h3>
+              <p>
+  Our network has been expanded to include 4 states, with the addition of modern repair infrastructure.<br>
+  4 राज्यों में अपना नेटवर्क विस्तारित किया गया, आधुनिक रिपेयरिंग इन्फ्रास्ट्रक्चर के साथ।
+</p>
+
+            </div>
+          </div>
+
+          <!-- Timeline Item 4 -->
+          <div class="mb-12 flex justify-between items-center w-full flex-row-reverse">
+            <div class="w-5/12 hidden md:block"></div>
+            <div class="z-10 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">4</div>
+            <div class="w-5/12 p-6 bg-white rounded-xl shadow-md">
+              <h3 class="text-xl font-bold mb-2">2023: Digital Transformation / 2023: डिजिटल परिवर्तन</h3>
+              <p>
+                Launched AI-powered service tracking and secure payment integration, enhancing user experience nationwide.<br>
+                AI-संचालित सेवा ट्रैकिंग और सुरक्षित भुगतान एकीकरण शुरू किया गया, जिससे देशभर में उपयोगकर्ता अनुभव में सुधार हुआ।
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Our Core Values / हमारे मूल मूल्य</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            <h3 class="text-xl font-semibold mb-4">Sustainability First / स्थिरता सबसे पहले</h3>
+            <p class="text-gray-700">
+              Every initiative is driven by a commitment to environmental responsibility and reducing carbon footprints.<br>
+              हर पहल पर्यावरणीय जिम्मेदारी और कार्बन उत्सर्जन कम करने के प्रति प्रतिबद्धता से प्रेरित है।
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            <h3 class="text-xl font-semibold mb-4">Citizen-Centric Design / नागरिक-केंद्रित डिज़ाइन</h3>
+            <p class="text-gray-700">
+              Our platform is built on user feedback, ensuring accessibility and ease of use for every citizen.<br>
+              हमारा मंच उपयोगकर्ता की प्रतिक्रिया पर आधारित है, जिससे हर नागरिक के लिए पहुँच और उपयोग में आसानी सुनिश्चित हो सके।
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            <h3 class="text-xl font-semibold mb-4">Transparent Governance / पारदर्शी शासन</h3>
+            <p class="text-gray-700">
+              Adhering to open data policies and real-time tracking to maintain trust and accountability.<br>
+              विश्वसनीयता और जवाबदेही बनाए रखने के लिए खुले डेटा नीतियों और रियल-टाइम ट्रैकिंग का पालन किया जाता है।
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <!-- <section class="py-16"> -->
+    <!--   <div class="container mx-auto px-4"> -->
+    <!--     <h2 class="text-3xl font-bold text-center mb-12">Our Leadership / हमारे नेतृत्व</h2> -->
+    <!--     <div class="grid md:grid-cols-3 gap-8"> -->
+    <!--       <div class="bg-white p-6 rounded-xl shadow-md text-center"> -->
+    <!--         <img src="https://picsum.photos/200/200?random=1" alt="Sh. Rajesh Kumar" class="w-32 h-32 rounded-full mx-auto mb-4"> -->
+    <!--         <h3 class="text-xl font-semibold">Sh. Rajesh Kumar</h3> -->
+    <!--         <p class="text-gray-700 mb-4">Director, EV Services / निदेशक, EV Services</p> -->
+    <!--         <p class="text-sm text-gray-500"> -->
+    <!--           "Committed to making EV adoption seamless for every Indian citizen."<br> -->
+    <!--           "हर भारतीय नागरिक के लिए EV अपनाने को सरल बनाने के प्रति प्रतिबद्ध।" -->
+    <!--         </p> -->
+    <!--       </div> -->
+    <!--       <div class="bg-white p-6 rounded-xl shadow-md text-center"> -->
+    <!--         <img src="https://picsum.photos/200/200?random=2" alt="Ms. Anjali Verma" class="w-32 h-32 rounded-full mx-auto mb-4"> -->
+    <!--         <h3 class="text-xl font-semibold">Ms. Anjali Verma</h3> -->
+    <!--         <p class="text-gray-700 mb-4">Chief Technology Officer / मुख्य प्रौद्योगिकी अधिकारी</p> -->
+    <!--         <p class="text-sm text-gray-500"> -->
+    <!--           "Innovating for a smarter and greener transportation ecosystem."<br> -->
+    <!--           "एक स्मार्ट और हरित परिवहन पारिस्थितिकी तंत्र के लिए नवाचार।" -->
+    <!--         </p> -->
+    <!--       </div> -->
+    <!--       <div class="bg-white p-6 rounded-xl shadow-md text-center"> -->
+    <!--         <img src="https://picsum.photos/200/200?random=3" alt="Mr. Arvind Singh" class="w-32 h-32 rounded-full mx-auto mb-4"> -->
+    <!--         <h3 class="text-xl font-semibold">Mr. Arvind Singh</h3> -->
+    <!--         <p class="text-gray-700 mb-4">Head of Operations / प्रमुख संचालन</p> -->
+    <!--         <p class="text-sm text-gray-500"> -->
+    <!--           "Ensuring efficient, transparent, and citizen-centric operations."<br> -->
+    <!--           "प्रभावी, पारदर्शी, और नागरिक-केंद्रित संचालन सुनिश्चित करना।" -->
+    <!--         </p> -->
+    <!--       </div> -->
+    <!--     </div> -->
+    <!--   </div> -->
+    <!-- </section> -->
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-blue-900 text-white">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-8 text-center">
+          <div>
+            <p class="text-5xl font-bold mb-2">50+</p>
+            <p>Government Partnerships / सरकारी साझेदार</p>
+          </div>
+          <div>
+            <p class="text-5xl font-bold mb-2">99.9%</p>
+            <p>Service Uptime / सेवा उपलब्धता</p>
+          </div>
+          <div>
+            <p class="text-5xl font-bold mb-2">1M+</p>
+            <p>Tonnes CO2 Reduced / CO2 टन कम किए गए</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Operations Section -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">How We Operate / हमारी कार्यशैली</h2>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <h3 class="text-2xl font-bold mb-4">Secure Infrastructure / सुरक्षित ढांचा</h3>
+            <ul class="list-disc pl-6 space-y-3 text-gray-700">
+              <li>Aadhaar-integrated user verification / आधार एकीकृत उपयोगकर्ता सत्यापन</li>
+              <li>PCI-DSS compliant payment processing</li>
+              <li>Regular security audits by CERT-In</li>
+            </ul>
+          </div>
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <h3 class="text-2xl font-bold mb-4">Service Ecosystem / सेवा पारिस्थितिकी तंत्र</h3>
+            <ul class="list-disc pl-6 space-y-3 text-gray-700">
+              <li>Pan-India charging network integration / देशभर में चार्जिंग नेटवर्क एकीकरण</li>
+              <li>AI-powered service tracking / AI-संचालित सेवा ट्रैकिंग</li>
+              <li>24/7 multilingual support / 24/7 बहुभाषी समर्थन</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Our Impact / हमारा प्रभाव</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <h3 class="text-xl font-semibold mb-4">Nationwide Reach / देशव्यापी पहुँच</h3>
+            <p class="text-gray-700">
+              Empowering millions of EV users across India and driving sustainable urban mobility.<br>
+              भारत भर में लाखों EV उपयोगकर्ताओं को सशक्त बनाना और सतत शहरी गतिशीलता को बढ़ावा देना।
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <h3 class="text-xl font-semibold mb-4">Innovative Solutions / नवाचारी समाधान</h3>
+            <p class="text-gray-700">
+              Implementing next-gen technology to enhance service efficiency and customer experience.<br>
+              सेवा दक्षता और ग्राहक अनुभव को बेहतर बनाने के लिए अगली पीढ़ी की तकनीक को लागू करना।
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <h3 class="text-xl font-semibold mb-4">Environmental Benefits / पर्यावरणीय लाभ</h3>
+            <p class="text-gray-700">
+              Reducing carbon footprints and promoting clean energy initiatives across the nation.<br>
+              कार्बन उत्सर्जन कम करना और देशभर में स्वच्छ ऊर्जा पहलों को बढ़ावा देना।
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-green-100">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-6">Join India's Electric Revolution / भारत की इलेक्ट्रिक क्रांति में शामिल हों</h2>
+        <div class="space-x-4">
+          <a href="/join" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
+            Register Your EV / अपना EV रजिस्टर करें
+          </a>
+          <a href="/contact" class="bg-white text-blue-900 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300 inline-block">
+            Contact Support / समर्थन से संपर्क करें
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (Consistent with Home Page) -->
+  <footer class="bg-blue-900 text-white py-12">
+    <!-- Footer content can be added here -->
+  </footer>
+</div>
 {% endblock body %}
 
 {% block script %}
-
-<!--Script yaha add karna lekin alag se koi cdn mat use karna-->
-
 {% endblock script %}
+
