@@ -1,0 +1,9 @@
+<ol>
+    {% for x in information %}
+    <li>
+        <h2>{{ x.Heading }}</h2>
+        <p>{{ x.Text }}</p>
+        <p>{{ x.created_at }}</p>
+    </li>
+    {% endfor %}
+</ol>

@@ -128,17 +128,8 @@ EV Services India - Driving the Future of Sustainable Mobility
     <section class="py-16 bg-gray-100">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Latest Announcements</h2>
-        <div class="space-y-4">
-          <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-            <p class="text-sm text-gray-500 mb-2">15th Oct 2025</p>
-            <h3 class="text-xl font-semibold mb-2">New EV Charging Stations Launched in Delhi</h3>
-            <p class="text-gray-600">We're excited to announce the launch of 50 new charging stations across Delhi, making it easier than ever for EV owners to charge their vehicles.</p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-            <p class="text-sm text-gray-500 mb-2">1st Oct 2025</p>
-            <h3 class="text-xl font-semibold mb-2">Referral Program Extended – Earn Double Rewards!</h3>
-            <p class="text-gray-600">Our popular referral program has been extended for another month. Refer a friend and earn double the usual rewards!</p>
-          </div>
+        <div class="space-y-4" hx-get="{% url "announcement" %}" hx-trigger="load" hx-swap="innerHTML"> 
+          
         </div>
         <div class="text-center mt-8">
           <a href="/announcements" class="text-blue-900 hover:text-blue-700 font-semibold inline-flex items-center transition duration-300">

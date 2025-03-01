@@ -6,4 +6,5 @@ urlpatterns = [
     # Other URL paths
     path('', include('home.urls')),
     path('', include('Employee_management.urls')),
+    path('', include('announcement.urls')),
 ]
