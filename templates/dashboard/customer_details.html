@@ -1,0 +1,116 @@
+<style>
+    /* Form Container */
+    .form-card {
+        max-width: 400px;
+        margin: auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e5e7eb;
+    }
+
+    /* Input Fields and Select Dropdown */
+    .form-card input,
+    .form-card select {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: white;
+        color: #111827;
+        font-size: 0.875rem;
+        outline: none;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-card input:focus,
+    .form-card select:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    }
+
+    /* Button */
+    .form-card button {
+        width: 100%;
+        padding: 0.75rem;
+        margin-top: 1rem;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #4CAF50, #45a049);
+        color: white;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-card button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+    }
+
+    .form-card button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+    }
+
+    /* Optional: Add a subtle animation to the form container */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-card {
+        animation: fadeIn 0.5s ease-out;
+    }
+</style>
+
+<div class="form-card">
+    {% if messages %}
+    <div style="
+        max-width: 400px;
+        margin: 10px auto;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        text-align: center;">
+        
+        {% for message in messages %}
+            <div style="
+                margin-bottom: 8px;
+                padding: 12px;
+                border-radius: 6px;
+                color: white;
+                background: {% if message.tags == 'success' %} #4CAF50 {% elif message.tags == 'error' %} #E53935 {% elif message.tags == 'warning' %} #FFC107 {% else %} #2196F3 {% endif %};">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+    <form hx-post="{% url 'add_customer_details' user_id=customer_user.id %}" hx-target="#swap_admin" hx-swap="innerHTML">
+        {% csrf_token %}
+        
+        <!-- Gender Dropdown -->
+        <select name="gender" required>
+            <option value="Male" selected>Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <input type="text" name="father_name" placeholder="Father's Name" required />
+        <input type="text" name="phone_number" placeholder="Phone Number" required />
+        <input type="text" name="aadhar_number" placeholder="Aadhar Number" required />
+        <input type="text" name="address" placeholder="Address" required />
+        
+        <button type="submit">Submit</button>
+    </form>
+</div>

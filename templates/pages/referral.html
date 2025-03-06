@@ -229,11 +229,11 @@
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-3xl font-bold mb-6">Start Earning Today!</h2>
                 <div class="space-x-4">
-                    <a href="/register"
+                    <a href="{% url "join_page" %}" hx-get="{% url 'join_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true"
                        class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
                         Join Now
                     </a>
-                    <a href="/contact"
+                    <a href="{% url "contact_page" %}" hx-get="{% url 'contact_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true"
                        class="bg-white text-blue-900 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300 inline-block">
                         Learn More
                     </a>

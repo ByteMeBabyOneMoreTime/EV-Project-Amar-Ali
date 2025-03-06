@@ -32,8 +32,8 @@
       <a href="{% url 'homepage' %}" hx-get="{% url 'homepage' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300">Home</a>
       <a href="{% url 'about_page' %}" hx-get="{% url 'about_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300">About Us</a>
       <a href="{% url 'services_page' %}" hx-get="{% url 'services_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300">Services</a>
-      <a href="{% url "referral" %}" class="text-blue-900 hover:text-green-700 transition duration-300">Referral Program</a>
-      <a href="{% url "announcements" %}" class="text-blue-900 hover:text-green-700 transition duration-300">Announcements</a>
+      <a href="{% url "referral" %}" hx-get="{% url 'referral' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300">Referral Program</a>
+      <a href="{% url "announcements" %}" hx-get="{% url 'announcements' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300">Announcements</a>
       <a href="{% url 'contact_page' %}" hx-get="{% url 'contact_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300">Contact Us</a>
     </nav>
     <!-- Mobile Navigation -->
@@ -42,8 +42,8 @@
         <a href="{% url 'homepage' %}" hx-get="{% url 'homepage' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300">Home</a>
         <a href="{% url 'about_page' %}" hx-get="{% url 'about_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300">About Us</a>
         <a href="{% url 'services_page' %}" hx-get="{% url 'services_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300">Services</a>
-        <a href="{% url "referral" %}" class="text-blue-900 hover:text-green-700 transition duration-300">Referral Program</a>
-        <a href="{% url "announcements" %}" class="text-blue-900 hover:text-green-700 transition duration-300">Announcements</a>
+        <a href="{% url "referral" %}" hx-get="{% url 'referral' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300">Referral Program</a>
+        <a href="{% url "announcements" %}" hx-get="{% url 'announcements' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300">Announcements</a>
         <a href="{% url 'contact_page' %}" hx-get="{% url 'contact_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300">Contact Us</a>
       </div>
     </nav>

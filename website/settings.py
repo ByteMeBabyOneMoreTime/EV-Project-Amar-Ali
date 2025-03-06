@@ -21,6 +21,7 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     # Custom apps
     'home',
+    'Services',
     'Employee_management',
     'announcement',
     'Cuser',

@@ -1,0 +1,22 @@
+{% extends 'unfold/layouts/base_simple.html' %}
+
+{% load i18n %}
+
+{% block breadcrumbs %}{% endblock %}
+
+
+{% block title %}
+    {% if subtitle %}
+        {{ subtitle }} |
+    {% endif %}
+
+    {{ title }} | {{ site_title|default:_('E Riksha Kendra Admin Dashboard') }}
+{% endblock %}
+
+{% block branding %}
+    {% comment %} {% include "unfold/helpers/site_branding.html" %} {% endcomment %}
+{% endblock %}
+
+{% block content %}
+    {% include "admin/custom_admin.html" %}
+{% endblock %}

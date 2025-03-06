@@ -1,0 +1,36 @@
+<style>
+    .card-button {
+        background: linear-gradient(135deg, #4CAF50, #45a049);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .card-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(135deg, #45a049, #4CAF50);
+    }
+
+    .card-button:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>
+{% include "components/loader.html" %}
+<div id="swap_admin" hx-indicator="#loader">
+    <button class="card-button" hx-get="{% url 'register_customer' %}" hx-target="#swap_admin" hx-swap="innerHTML">
+        Register Customer
+    </button>
+    
+</div>
+

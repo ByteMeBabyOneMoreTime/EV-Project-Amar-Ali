@@ -41,10 +41,10 @@
         <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Empowering India's<br>Electric Vehicle Revolution</h2>
         <p class="text-xl mb-8 max-w-2xl">Join the movement towards a greener, cleaner future. Experience the power of sustainable mobility with EV Services India.</p>
         <div class="space-x-4">
-          <a href="/join" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
+          <a href="{% url "join_page" %}" hx-get="{% url 'join_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
             Join Now
           </a>
-          <a href="/about" class="bg-white text-blue-900 font-bold py-3 px-8 rounded-full hover:bg-blue-100 transition duration-300 inline-block">
+          <a href="{% url "contact_page" %}" hx-get="{% url 'contact_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="bg-white text-blue-900 font-bold py-3 px-8 rounded-full hover:bg-blue-100 transition duration-300 inline-block">
             Learn More
           </a>
         </div>
@@ -121,7 +121,7 @@
           </div>
         </div>
         <div class="text-center mt-12">
-          <a href="/services" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
+          <a href="{% url 'services_page' %}" hx-get="{% url 'services_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
             Explore All Services
           </a>
         </div>
@@ -135,7 +135,7 @@
           
         </div>
         <div class="text-center mt-8">
-          <a href="/announcements" class="text-blue-900 hover:text-blue-700 font-semibold inline-flex items-center transition duration-300">
+          <a href="{% url "announcements" %}" hx-get="{% url 'announcements' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true"  class="text-blue-900 hover:text-blue-700 font-semibold inline-flex items-center transition duration-300">
             View All Announcements
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -155,7 +155,7 @@
             <h2 class="text-3xl font-bold mb-4">Join Our Referral Program</h2>
             <p class="text-xl mb-6">Refer friends and earn exciting rewards!</p>
             <p class="mb-8 text-gray-600">Our referral program allows you to share the benefits of electric vehicles with your friends and family. For every successful referral, you'll receive rewards that can be used towards your next EV service or purchase.</p>
-            <a href="/referral" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
+            <a href="{% url "referral" %}" hx-get="{% url 'referral' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
               Refer Now
             </a>
           </div>

@@ -1,0 +1,171 @@
+{% load static %}
+<style>
+    /* Form Container */
+    .form-card {
+        max-width: 400px;
+        margin: auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e5e7eb;
+    }
+
+    /* Form Heading */
+    .form-card h2 {
+        text-align: center;
+        color: #111827;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Labels */
+    .form-card label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #111827;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Input Fields and Select Dropdowns */
+    .form-card input,
+    .form-card select {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: white;
+        color: #111827;
+        font-size: 0.875rem;
+        outline: none;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-card input:focus,
+    .form-card select:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    }
+
+    /* Online Payment ID Field */
+    #online_payment_id_field {
+        margin-top: 1rem;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Button */
+    .form-card button {
+        width: 100%;
+        padding: 0.75rem;
+        margin-top: 1rem;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #4CAF50, #45a049);
+        color: white;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-card button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+    }
+
+    .form-card button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+    }
+
+    /* Optional: Add a subtle animation to the form container */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-card {
+        animation: fadeIn 0.5s ease-out;
+    }
+</style>
+
+<div class="form-card">
+    {% if messages %}
+    <div style="
+        max-width: 400px;
+        margin: 10px auto;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        text-align: center;">
+        
+        {% for message in messages %}
+            <div style="
+                margin-bottom: 8px;
+                padding: 12px;
+                border-radius: 6px;
+                color: white;
+                background: {% if message.tags == 'success' %} #4CAF50 {% elif message.tags == 'error' %} #E53935 {% elif message.tags == 'warning' %} #FFC107 {% else %} #2196F3 {% endif %};">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+    <h2>Select a Service</h2>
+    <form hx-post="{% url 'select_service' user_id=customer_user.id %}" 
+          hx-target="#swap_admin" 
+          hx-swap="innerHTML">
+        {% csrf_token %}
+        
+        <!-- Service Dropdown -->
+        <label for="service">Choose a service:</label>
+        <select name="service" id="service" required>
+            {% for service in services %}
+            <option value="{{ service.id }}">{{ service.name }} - ₹{{ service.price }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Payment Method Dropdown -->
+        <label for="payment_method">Payment Method:</label>
+        <select name="payment_method" id="payment_method" required onchange="toggleOnlinePaymentId()">
+            <option value="Offline">Offline</option>
+            <option value="Online">Online</option>
+        </select>
+
+        <!-- Online Payment ID Field -->
+        <div id="online_payment_id_field">
+            <img src="{% static 'images/QR.jpeg' %}" alt="QR for Payment">
+            <label for="online_payment_id">Online Payment ID:</label>
+            <input type="text" name="online_payment_id" id="online_payment_id">
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit">Proceed to Payment</button>
+    </form>
+</div>
+
+<script>
+    function toggleOnlinePaymentId() {
+        var method = document.getElementById("payment_method").value;
+        var onlineField = document.getElementById("online_payment_id_field");
+        
+        if (method === "Online") {
+            onlineField.style.display = "block";
+        } else {
+            onlineField.style.display = "none";
+        }
+    }
+
+    // Initialize the form state
+    toggleOnlinePaymentId();
+</script>
