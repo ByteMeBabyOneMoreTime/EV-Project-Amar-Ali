@@ -115,8 +115,8 @@ def select_service(request, user_id):
 
     if request.method == "POST":
         service_id = request.POST.get("service", "").strip()
-        method = request.POST.get("method", "").strip()
-        payment_id = request.POST.get("payment_id", "").strip()  # Get the UI payment transaction ID
+        method = request.POST.get("payment_method", "").strip()  # Fix: Use correct key
+        payment_id = request.POST.get("online_payment_id", "").strip()  # Fix: Use correct key
 
         if not service_id:
             messages.error(request, "Please select a service.")
@@ -137,7 +137,7 @@ def select_service(request, user_id):
             Payment.objects.create(
                 user=customer_user,
                 service=selected_service,
-                method=method,
+                method=method,  # Fix: Now correctly fetching the method
                 online_payment_id=payment_id if method == "Online" else None  # Only store if online
             )
 
