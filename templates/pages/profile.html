@@ -18,6 +18,17 @@
 
     <h2>Package Details</h2>
     <p>Package Name: {{package}}</p>
+    <p>Package Terms:<p>
+    {% if perks %}
+        <ul>
+            {% for perk in perks %}
+                <li>{{ perk.terms }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No terms and conditions found for this package.</p>
+    {% endif %}
+
     <p>Days Left in Package: {{ packagedaysleft|default:"0" }}</p>
     <p>Need for Recharge: {% if needforrecharge %}Yes{% else %}No{% endif %}</p>
 

@@ -5,7 +5,7 @@ from django.core.exceptions import PermissionDenied
 from django.contrib import messages
 from django.db import IntegrityError
 from .models import Role, Customer
-from Services.models import Service, Payment
+from Services.models import Service, Payment, Perks
 
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -213,6 +213,8 @@ def customer_page(request):
     user_payement_details = Payment.objects.filter(user=user)
     last_payement = user_payement_details.first()
     package = last_payement.service.name
+    perks = Perks.objects.filter(service=last_payement.service)
+    
 
     if last_payement:
         package_days_left = last_payement.days_until_default()
@@ -256,7 +258,9 @@ def customer_page(request):
         'packagedaysleft': package_days_left,
         'needforrecharge': need_for_recharge,
         'allpayments': user_payement_details,
-        'package' : package
+        'package' : package,
+        'perks' : perks
+        
     }
 
     return render(request, 'pages/profile.html', context)
