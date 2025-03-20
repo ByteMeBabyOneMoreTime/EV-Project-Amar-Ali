@@ -10,6 +10,7 @@ from Services.models import Service, Payment
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth import logout
+from django.core.exceptions import ObjectDoesNotExist
 
 @login_required(login_url="login") 
 def register_customer(request):
@@ -17,7 +18,8 @@ def register_customer(request):
         username = request.POST.get("username", "").strip()
         email = request.POST.get("email", "").strip()
         password = request.POST.get("password", "").strip()
-
+        name = request.POST.get("name", "").strip()
+        
         # Basic validation
         if not username or not email or not password:
             messages.error(request, "All fields are required.")
@@ -36,6 +38,8 @@ def register_customer(request):
         try:
             # Create user and role
             customer_user = User.objects.create_user(username=username, email=email, password=password)
+            customer_user.first_name = name
+            customer_user.save()
             Role.objects.create(user=customer_user, role="Customer")
 
             messages.success(request, "Customer registered successfully.")
@@ -167,7 +171,7 @@ def payment_success(request, user_id):
     return render(request, template, {"customer_user": customer_user})
 
 
-def login(request):
+def clogin(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
             if request.user.is_superuser or Role.objects.get(user=request.user).role == "Employee":
@@ -197,8 +201,62 @@ def clogout(request):
     logout(request)
     return redirect('homepage')
 
-@login_required(login_url="login")   
+@login_required(login_url="login")
 def customer_page(request):
     user = request.user
-    
-    
+
+    try:
+        user_customer_details = Customer.objects.get(user=user)
+    except ObjectDoesNotExist:
+        user_customer_details = None
+
+    user_payement_details = Payment.objects.filter(user=user)
+    last_payement = user_payement_details.first()
+    package = last_payement.service.name
+
+    if last_payement:
+        package_days_left = last_payement.days_until_default()
+        need_for_recharge = last_payement.is_defaulter()
+    else:
+        package_days_left = 0
+        need_for_recharge = True
+
+    username = f"{user.first_name} {user.last_name}"
+    lastlogin = user.last_login
+    created = user.date_joined
+
+    if user_customer_details:
+        userid = user_customer_details.generated_id
+        user_gender = user_customer_details.gender
+        user_fathers_name = user_customer_details.father_name
+        user_phonenumber = user_customer_details.phone_number
+        user_aadharnumber = user_customer_details.aadhar_number
+        user_address = user_customer_details.address
+        agent_name = user_customer_details.created_by.username
+    else:
+        userid = None
+        user_gender = None
+        user_fathers_name = None
+        user_phonenumber = None
+        user_aadharnumber = None
+        user_address = None
+        agent_name = None
+
+    context = {
+        'username': username,
+        'lastlogin': lastlogin,
+        'created': created,
+        'userid': userid,
+        'user_gender': user_gender,
+        'user_fathers_name': user_fathers_name,
+        'user_phonenumber': user_phonenumber,
+        'user_aadharnumber': user_aadharnumber,
+        'user_address': user_address,
+        'agent_name': agent_name,
+        'packagedaysleft': package_days_left,
+        'needforrecharge': need_for_recharge,
+        'allpayments': user_payement_details,
+        'package' : package
+    }
+
+    return render(request, 'pages/profile.html', context)
