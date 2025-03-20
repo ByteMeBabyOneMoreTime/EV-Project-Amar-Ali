@@ -23,7 +23,7 @@
         <a href="{% url 'contact_page' %}" hx-get="{% url 'contact_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300 font-medium py-2 px-3 rounded-md hover:bg-gray-100">Contact</a>
       </nav>
       
-      <!-- Language, admin, register, and mobile menu buttons -->
+      <!-- Language and login buttons -->
       <div class="flex items-center space-x-3 shrink-0">
         <div class="relative group">
           <button class="text-blue-900 hover:text-green-700 transition duration-300 p-2 rounded-full hover:bg-gray-100">
@@ -34,21 +34,13 @@
           </button>
         </div>
 
-        <!-- Admin Button -->
-        <a href="/admin" class="hidden sm:inline-flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 transition duration-300 px-3 py-1.5 text-sm font-medium rounded-md shadow-sm">
+        <!-- Login Button with placeholder href -->
+        <a href="#" class="hidden sm:inline-flex items-center justify-center text-white bg-blue-600 hover:bg-blue-700 transition duration-300 px-3 py-1.5 text-sm font-medium rounded-md shadow-sm">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
           </svg>
-          Admin
+          Login
         </a>
-
-        <!-- Register Button -->
-        <button id="register-button" class="hidden sm:inline-flex items-center justify-center text-white bg-green-600 hover:bg-green-700 transition duration-300 px-3 py-1.5 text-sm font-medium rounded-md shadow-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-          </svg>
-          Register
-        </button>
 
         <button id="mobile-menu-button" class="text-blue-900 hover:text-green-700 transition duration-300 p-2 rounded-full hover:bg-gray-100 lg:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -81,59 +73,26 @@
         <a href="{% url "announcements" %}" hx-get="{% url 'announcements' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300 py-2 px-4 rounded-md hover:bg-gray-100">Announcements</a>
         <a href="{% url 'contact_page' %}" hx-get="{% url 'contact_page' %}" hx-target="#body" hx-swap="innerHTML" hx-push-url="true" class="text-blue-900 hover:text-green-700 transition duration-300 py-2 px-4 rounded-md hover:bg-gray-100">Contact Us</a>
         
-        <!-- Mobile Admin and Register Buttons -->
-        <div class="flex space-x-2 mt-2 pt-2 border-t border-gray-200">
-          <a href="/admin" class="flex-1 flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 transition duration-300 px-4 py-2 text-sm font-medium rounded-md shadow-sm">
+        <!-- Mobile Login Button with placeholder href -->
+        <div class="mt-2 pt-2 border-t border-gray-200">
+          <a href="#" class="flex items-center justify-center text-white bg-blue-600 hover:bg-blue-700 transition duration-300 px-4 py-2 text-sm font-medium rounded-md shadow-sm">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
             </svg>
-            Admin
+            Login
           </a>
-          <button id="mobile-register-button" class="flex-1 flex items-center justify-center text-white bg-green-600 hover:bg-green-700 transition duration-300 px-4 py-2 text-sm font-medium rounded-md shadow-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-            </svg>
-            Register
-          </button>
         </div>
       </div>
     </nav>
   </div>
 </header>
 
-<!-- Coming Soon Popup -->
-<div id="coming-soon-popup" class="fixed inset-0 z-50 flex items-center justify-center hidden">
-  <div class="absolute inset-0 bg-black bg-opacity-50" id="popup-overlay"></div>
-  <div class="relative bg-white rounded-lg shadow-xl max-w-md w-full p-6 transform transition-all">
-    <div class="flex items-start justify-between mb-4">
-      <h3 class="text-xl font-semibold text-gray-900">Coming Soon!</h3>
-      <button id="close-popup" class="text-gray-400 hover:text-gray-500 focus:outline-none transition duration-300">
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-    <div class="text-center">
-      <div class="mt-2 mb-6">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-green-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <p class="text-gray-700">Registration functionality is coming soon!</p>
-        <p class="text-gray-500 text-sm mt-2">We're working hard to bring you this feature. Please check back later.</p>
-      </div>
-      <button id="close-popup-button" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 font-medium">
-        Got it
-      </button>
-    </div>
-  </div>
-</div>
-
 <script>
 // Mobile menu toggle
 document.getElementById('mobile-menu-button').addEventListener('click', function(event) {
   const mobileMenu = document.getElementById('mobile-menu');
   mobileMenu.classList.toggle('hidden');
-  event.stopPropagation(); // Prevent event from propagating to document
+  event.stopPropagation();
 });
 
 // Close mobile menu when clicking outside
@@ -153,42 +112,4 @@ window.addEventListener('resize', function() {
     mobileMenu.classList.add('hidden');
   }
 });
-
-// Register button and popup functionality
-function setupRegisterPopup() {
-  const popup = document.getElementById('coming-soon-popup');
-  const closeBtn = document.getElementById('close-popup');
-  const closePopupBtn = document.getElementById('close-popup-button');
-  const overlay = document.getElementById('popup-overlay');
-  const registerBtn = document.getElementById('register-button');
-  const mobileRegisterBtn = document.getElementById('mobile-register-button');
-
-  // Function to show popup
-  function showPopup() {
-    popup.classList.remove('hidden');
-    document.body.style.overflow = 'hidden'; // Prevent scrolling
-  }
-
-  // Function to hide popup
-  function hidePopup() {
-    popup.classList.add('hidden');
-    document.body.style.overflow = ''; // Enable scrolling
-  }
-
-  // Event listeners
-  registerBtn.addEventListener('click', showPopup);
-  mobileRegisterBtn.addEventListener('click', showPopup);
-  closeBtn.addEventListener('click', hidePopup);
-  closePopupBtn.addEventListener('click', hidePopup);
-  overlay.addEventListener('click', hidePopup);
-
-  // Close on escape key
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape' && !popup.classList.contains('hidden')) {
-      hidePopup();
-    }
-  });
-}
-
-document.addEventListener('DOMContentLoaded', setupRegisterPopup);
 </script>
