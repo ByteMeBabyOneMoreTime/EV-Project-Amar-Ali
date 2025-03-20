@@ -34,6 +34,15 @@ class Payment(models.Model):
         Returns True if the payment date is more than 20 days ago.
         """
         return (date.today() - self.date) > timedelta(days=20)
+    
+    def days_until_default(self):
+        """
+        Returns the number of days remaining until the user becomes a defaulter.
+        If the user is already a defaulter, returns 0.
+        """
+        days_passed = (date.today() - self.date).days
+        days_remaining = 30 - days_passed
+        return max(days_remaining, 0)  # Ensure the result is not negative
 
 class Perks(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)

@@ -58,4 +58,6 @@ class Customer(models.Model):
             new_id = str(random.randint(10000000, 99999999))  # Generate an 8-digit number
             if not Customer.objects.filter(user_id=new_id).exists():
                 return new_id
-
+            
+    def __str__(self):
+        return f"{self.user.username} - {self.generated_id} - {self.father_name}"
