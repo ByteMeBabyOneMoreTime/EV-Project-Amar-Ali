@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import date, timedelta
 
 class Service(models.Model):  
     name = models.CharField(max_length=200)
@@ -21,3 +22,19 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"Payment by {self.user.username} for {self.service.name} on {self.date}"
+    
+    def is_defaulter(self):
+        """
+        Returns True if the payment date is more than 30 days ago.
+        """
+        return (date.today() - self.date) > timedelta(days=30)
+
+    def is_going_to_default(self):
+        """
+        Returns True if the payment date is more than 20 days ago.
+        """
+        return (date.today() - self.date) > timedelta(days=20)
+
+class Perks(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    terms = models.TextField()

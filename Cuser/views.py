@@ -7,7 +7,11 @@ from django.db import IntegrityError
 from .models import Role, Customer
 from Services.models import Service, Payment
 
-@login_required
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.contrib.auth import logout
+
+@login_required(login_url="login") 
 def register_customer(request):
     if request.method == "POST":
         username = request.POST.get("username", "").strip()
@@ -46,7 +50,7 @@ def register_customer(request):
     return render(request, template)
 
 
-@login_required
+@login_required(login_url="login") 
 def add_customer_details(request, user_id):
     customer_user = get_object_or_404(User, id=user_id)
 
@@ -108,7 +112,7 @@ def add_customer_details(request, user_id):
     return render(request, template, {"customer_user": customer_user})
 
 
-@login_required
+@login_required(login_url="login") 
 def select_service(request, user_id):
     customer_user = get_object_or_404(User, id=user_id)
     services = Service.objects.all()
@@ -150,7 +154,7 @@ def select_service(request, user_id):
     return render(request, "dashboard/select_service.html", {"customer_user": customer_user, "services": services})
 
 
-@login_required
+@login_required(login_url="login") 
 def payment_success(request, user_id):
     try:
         customer_user = get_object_or_404(User, id=user_id)
@@ -161,3 +165,40 @@ def payment_success(request, user_id):
 
     template = "dashboard/payment_success.html"
     return render(request, template, {"customer_user": customer_user})
+
+
+def login(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            if request.user.is_superuser or Role.objects.get(user=request.user).role == "Employee":
+                return redirect('/admin')
+            else:
+                return redirect('profile')
+            
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            if Role.objects.get(user=user).role == "Employee":
+                return redirect('/admin')
+            elif user.is_superuser:
+                return redirect('/admin')
+            else:
+                return redirect("profile")
+        else:
+            messages.error(request, 'Invalid username or password.')
+
+    return render(request, 'pages/login.html')
+
+@login_required(login_url="login")   
+def clogout(request):
+    logout(request)
+    return redirect('homepage')
+
+@login_required(login_url="login")   
+def customer_page(request):
+    user = request.user
+    
+    
