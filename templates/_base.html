@@ -35,6 +35,12 @@
                 Flowbite.init();
             }
         });
+        document.body.addEventListener('htmx:afterSwap', function(evt) {
+            // Check if the triggering element has hx-push-url="true"
+            if (evt.detail.requestConfig && evt.detail.requestConfig.elt && evt.detail.requestConfig.elt.getAttribute('hx-push-url') === 'true') {
+                window.scrollTo(0, 0);
+            }
+        });
     </script>
 {% block script %}
 

@@ -259,8 +259,7 @@ def customer_page(request):
         'needforrecharge': need_for_recharge,
         'allpayments': user_payement_details,
         'package' : package,
-        'perks' : perks
-        
+        'perks' : perks 
     }
 
     return render(request, 'pages/profile.html', context)
