@@ -47,3 +47,6 @@ class Payment(models.Model):
 class Perks(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     terms = models.TextField()
+    
+    def __str__(self):
+        return f"{self.service} : {self.terms}"
