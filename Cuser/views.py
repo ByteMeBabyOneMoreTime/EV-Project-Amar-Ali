@@ -7,10 +7,16 @@ from django.db import IntegrityError
 from .models import Role, Customer
 from Services.models import Service, Payment, Perks
 
+
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_protect
+import logging
+
 
 @login_required(login_url="login") 
 def register_customer(request):
@@ -171,95 +177,159 @@ def payment_success(request, user_id):
     return render(request, template, {"customer_user": customer_user})
 
 
+@csrf_protect
+@require_http_methods(["GET", "POST"])
 def clogin(request):
+    # If user is already authenticated, redirect them appropriately
+    if request.user.is_authenticated:
+        return redirect_authenticated_user(request.user)
+    
     if request.method == 'POST':
-        if request.user.is_authenticated:
-            if request.user.is_superuser or Role.objects.get(user=request.user).role == "Employee":
-                return redirect('/admin')
-            else:
-                return redirect('profile')
-            
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '').strip()
+        
+        # Basic validation
+        if not username or not password:
+            messages.error(request, 'Both username and password are required.')
+            return render(request, 'pages/login.html')
+        
         user = authenticate(request, username=username, password=password)
-
+        
         if user is not None:
             login(request, user)
-            if Role.objects.get(user=user).role == "Employee":
-                return redirect('/admin')
-            elif user.is_superuser:
-                return redirect('/admin')
-            else:
-                return redirect("profile")
+            return redirect_authenticated_user(request, user)
         else:
             messages.error(request, 'Invalid username or password.')
-
+            # Consider logging failed attempts here
+    
     return render(request, 'pages/login.html')
+
+def redirect_authenticated_user(request, user):
+    """Helper function to determine where to redirect authenticated users"""
+    try:
+        if user.is_superuser or Role.objects.get(user=user).role == "Employee":
+            return redirect('admin:index')  # Using named URL for admin
+        return redirect('profile')
+    except ObjectDoesNotExist:
+        # Handle case where Role doesn't exist
+        messages.error(request, 'Your account is not properly configured.')
+        return redirect('profile')
 
 @login_required(login_url="login")   
 def clogout(request):
     logout(request)
     return redirect('homepage')
 
+
+
+
+logger = logging.getLogger(__name__)
+
 @login_required(login_url="login")
 def customer_page(request):
     user = request.user
-
-    try:
-        user_customer_details = Customer.objects.get(user=user)
-    except ObjectDoesNotExist:
-        user_customer_details = None
-
-    user_payement_details = Payment.objects.filter(user=user)
-    last_payement = user_payement_details.first()
-    package = last_payement.service.name
-    perks = Perks.objects.filter(service=last_payement.service)
-    
-
-    if last_payement:
-        package_days_left = last_payement.days_until_default()
-        need_for_recharge = last_payement.is_defaulter()
-    else:
-        package_days_left = 0
-        need_for_recharge = True
-
-    username = f"{user.first_name} {user.last_name}"
-    lastlogin = user.last_login
-    created = user.date_joined
-
-    if user_customer_details:
-        userid = user_customer_details.generated_id
-        user_gender = user_customer_details.gender
-        user_fathers_name = user_customer_details.father_name
-        user_phonenumber = user_customer_details.phone_number
-        user_aadharnumber = user_customer_details.aadhar_number
-        user_address = user_customer_details.address
-        agent_name = user_customer_details.created_by.username
-    else:
-        userid = None
-        user_gender = None
-        user_fathers_name = None
-        user_phonenumber = None
-        user_aadharnumber = None
-        user_address = None
-        agent_name = None
-
     context = {
-        'username': username,
-        'lastlogin': lastlogin,
-        'created': created,
-        'userid': userid,
-        'user_gender': user_gender,
-        'user_fathers_name': user_fathers_name,
-        'user_phonenumber': user_phonenumber,
-        'user_aadharnumber': user_aadharnumber,
-        'user_address': user_address,
-        'agent_name': agent_name,
-        'packagedaysleft': package_days_left,
-        'needforrecharge': need_for_recharge,
-        'allpayments': user_payement_details,
-        'package' : package,
-        'perks' : perks 
+        'username': '',
+        'lastlogin': None,
+        'created': None,
+        'userid': None,
+        'user_gender': None,
+        'user_fathers_name': None,
+        'user_phonenumber': None,
+        'user_aadharnumber': None,
+        'user_address': None,
+        'agent_name': None,
+        'packagedaysleft': 0,
+        'needforrecharge': True,
+        'allpayments': [],
+        'package': None,
+        'perks': []
     }
 
+    try:
+        # Basic user info
+        context['username'] = f"{user.first_name or ''} {user.last_name or ''}".strip()
+        context['lastlogin'] = user.last_login
+        context['created'] = user.date_joined
+
+        # Customer details
+        try:
+            user_customer_details = Customer.objects.get(user=user)
+            context.update({
+                'userid': getattr(user_customer_details, 'generated_id', None),
+                'user_gender': getattr(user_customer_details, 'gender', None),
+                'user_fathers_name': getattr(user_customer_details, 'father_name', None),
+                'user_phonenumber': getattr(user_customer_details, 'phone_number', None),
+                'user_aadharnumber': getattr(user_customer_details, 'aadhar_number', None),
+                'user_address': getattr(user_customer_details, 'address', None),
+                'agent_name': getattr(getattr(user_customer_details, 'created_by', None), 'username', None)
+            })
+        except ObjectDoesNotExist:
+            logger.info(f"No customer details found for user {user.id}")
+        except Exception as e:
+            logger.error(f"Error fetching customer details for user {user.id}: {str(e)}")
+
+        # Payment details
+        try:
+            user_payement_details = Payment.objects.filter(user=user)
+            context['allpayments'] = user_payement_details
+            
+            last_payement = user_payement_details.first()
+            if last_payement:
+                try:
+                    context['packagedaysleft'] = last_payement.days_until_default() if hasattr(last_payement, 'days_until_default') else 0
+                    context['needforrecharge'] = last_payement.is_defaulter() if hasattr(last_payement, 'is_defaulter') else True
+                    
+                    if hasattr(last_payement, 'service') and last_payement.service:
+                        context['package'] = getattr(last_payement.service, 'name', None)
+                        try:
+                            context['perks'] = Perks.objects.filter(service=last_payement.service) if last_payement.service else []
+                        except Exception as e:
+                            logger.error(f"Error fetching perks for service {getattr(last_payement.service, 'id', 'unknown')}: {str(e)}")
+                            context['perks'] = []
+                except Exception as e:
+                    logger.error(f"Error processing payment details for user {user.id}: {str(e)}")
+        except Exception as e:
+            logger.error(f"Error fetching payment details for user {user.id}: {str(e)}")
+
+    except Exception as e:
+        logger.critical(f"Unexpected error in customer_page view for user {getattr(user, 'id', 'unknown')}: {str(e)}")
+        # You might want to add a message to the user here
+        # context['error_message'] = "An error occurred while loading your profile."
+
     return render(request, 'pages/profile.html', context)
+
+
+
+
+
+
+
+def register_employee(request):
+    if not request.user.is_superuser:
+        messages.error(request, "Only administrators can register new employees.")
+        return redirect('home')  # or wherever you want to redirect unauthorized users
+    
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            try:
+                # Create the user with staff status
+                user = form.save(commit=False)
+                user.is_staff = True
+                user.save()
+                
+                # Create the Role entry
+                Role.objects.create(user=user, role='Employee')
+                
+                messages.success(request, f"Employee {user.username} registered successfully!")
+                return redirect('employee_list')  # or your preferred redirect
+            except Exception as e:
+                messages.error(request, f"Error creating employee: {str(e)}")
+        else:
+            # Form is invalid, we'll handle errors in the template
+            pass
+    else:
+        form = UserCreationForm()
+    
+    return render(request, 'register_employee.html', {'form': form})
