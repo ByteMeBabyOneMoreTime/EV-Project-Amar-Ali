@@ -1,0 +1,121 @@
+<div class="emp-container">
+  <table class="emp-table">
+    <thead class="emp-table-header">
+      <tr>
+        <th class="emp-th">ID</th>
+        <th class="emp-th">Username</th>
+        <th class="emp-th">Email</th>
+        <th class="emp-th">First Name</th>
+        <th class="emp-th">Last Name</th>
+        <th class="emp-th">Customers Added</th>
+        <th class="emp-th">Date Joined</th>
+      </tr>
+    </thead>
+    <tbody class="emp-table-body">
+      {% for employee in employees %}
+      <tr class="emp-tr">
+        <td class="emp-td">{{ employee.user.id }}</td>
+        <td class="emp-td">{{ employee.user.username }}</td>
+        <td class="emp-td">{{ employee.user.email }}</td>
+        <td class="emp-td">{{ employee.user.first_name }}</td>
+        <td class="emp-td">{{ employee.user.last_name }}</td>
+        <td class="emp-td emp-center">
+          <span class="emp-badge">{{ employee.customer_count }}</span>
+        </td>
+        <td class="emp-td">{{ employee.user.date_joined|date:"Y-m-d" }}</td>
+      </tr>
+      {% empty %}
+      <tr class="emp-tr">
+        <td class="emp-td emp-no-data" colspan="7">No employees found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  /* Container styles */
+  .emp-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* Table styles */
+  .emp-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Header styles */
+  .emp-table-header {
+    background-color: #2c3e50;
+    color: white;
+  }
+
+  .emp-th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Body styles */
+  .emp-table-body {
+    background-color: white;
+  }
+
+  .emp-tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s;
+  }
+
+  .emp-tr:hover {
+    background-color: #f5f7fa;
+  }
+
+  .emp-td {
+    padding: 12px 15px;
+    color: #333;
+    font-size: 0.9rem;
+  }
+
+  /* Center alignment */
+  .emp-center {
+    text-align: center;
+  }
+
+  /* Badge styles */
+  .emp-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background-color: #3498db;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    min-width: 24px;
+    text-align: center;
+  }
+
+  /* No data message */
+  .emp-no-data {
+    text-align: center;
+    color: #7f8c8d;
+    padding: 20px;
+    font-style: italic;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .emp-th,
+    .emp-td {
+      padding: 8px 10px;
+      font-size: 0.8rem;
+    }
+  }
+</style>

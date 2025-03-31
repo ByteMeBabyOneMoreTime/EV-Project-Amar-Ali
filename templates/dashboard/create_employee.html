@@ -1,0 +1,396 @@
+<div class="form-container" id="employee-form-container">
+    <div class="form-row">
+        <div class="form-col-main">
+            <div class="form-card">
+                <div class="card-body">
+                    <!-- Success Message -->
+                    <div id="success-message" class="alert alert-success"
+                        style="display: {% if success %}block{% else %}none{% endif %};">
+                        ✓ Employee account created successfully!
+                        <button type="button" class="alert-close">×</button>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="error-message" class="alert alert-danger"
+                        style="display: {% if error %}block{% else %}none{% endif %};">
+                        ✗ {{ error }}
+                        <button type="button" class="alert-close">×</button>
+                    </div>
+
+                    <form method="post" class="validated-form" novalidate hx-post="{% url 'create_employee' %}"
+                        hx-target="#employee-form-container" hx-swap="outerHTML" hx-trigger="submit">
+                        {% csrf_token %}
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="{{ form.username.id_for_label }}" class="form-label">Username*</label>
+                                {{ form.username }}
+                                {% if form.username.errors %}
+                                <div class="invalid-message">{{ form.username.errors.as_text }}</div>
+                                {% else %}
+                                <div class="invalid-message">Please choose a username.</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="{{ form.email.id_for_label }}" class="form-label">Email*</label>
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                <div class="invalid-message">{{ form.email.errors.as_text }}</div>
+                                {% else %}
+                                <div class="invalid-message">Please provide a valid email.</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="{{ form.first_name.id_for_label }}" class="form-label">First Name</label>
+                                {{ form.first_name }}
+                                {% if form.first_name.errors %}
+                                <div class="invalid-message">{{ form.first_name.errors.as_text }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
+                                {{ form.last_name }}
+                                {% if form.last_name.errors %}
+                                <div class="invalid-message">{{ form.last_name.errors.as_text }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="{{ form.password1.id_for_label }}" class="form-label">Password*</label>
+                                {{ form.password1 }}
+                                {% if form.password1.errors %}
+                                <div class="invalid-message">{{ form.password1.errors.as_text }}</div>
+                                {% else %}
+                                <div class="form-hint">
+                                    Your password must be at least 8 characters.
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="{{ form.password2.id_for_label }}" class="form-label">Confirm
+                                    Password*</label>
+                                {{ form.password2 }}
+                                {% if form.password2.errors %}
+                                <div class="invalid-message">{{ form.password2.errors.as_text }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary htmx-indicator">
+                                <span class="submit-text">
+                                    <i class="fas fa-save"></i> Create Employee
+                                </span>
+                                <span class="loading-text" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i> Processing...
+                                </span>
+                            </button>
+                            <a href="/admin" class="btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Your existing styles... */
+    .htmx-indicator {
+        opacity: 0.7;
+    }
+
+    .htmx-indicator .submit-text {
+        display: none;
+    }
+
+    .htmx-indicator .loading-text {
+        display: inline-block !important;
+    }
+</style>
+
+<script src="https://unpkg.com/htmx.org@1.9.6"></script>
+<script>
+    // Initialize functions
+    function initComponents() {
+        // Close buttons for alerts
+        document.querySelectorAll('.alert-close').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.style.display = 'none';
+            });
+        });
+
+        // Form validation
+        document.querySelectorAll('.validated-form').forEach(form => {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            });
+        });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initComponents);
+
+    // Reinitialize after HTMX swaps
+    document.body.addEventListener('htmx:afterSwap', initComponents);
+
+    // Handle loading states
+    document.body.addEventListener('htmx:beforeRequest', function () {
+        const submitBtn = document.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.classList.add('htmx-indicator');
+        }
+    });
+
+    document.body.addEventListener('htmx:afterRequest', function () {
+        const submitBtn = document.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.classList.remove('htmx-indicator');
+        }
+    });
+</script>
+<style>
+    /* Main container styles */
+    .form-container {
+        padding: 2rem 1rem;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .form-row {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .form-col-main {
+        width: 100%;
+        max-width: 768px;
+    }
+
+    /* Card styles */
+    .form-card {
+        background: #fff;
+        border-radius: 0.375rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        overflow: hidden;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    /* Alert styles */
+    .alert {
+        position: relative;
+        padding: 1rem 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .alert-success {
+        color: #0f5132;
+        background-color: #d1e7dd;
+        border-color: #badbcc;
+    }
+
+    .alert-danger {
+        color: #842029;
+        background-color: #f8d7da;
+        border-color: #f5c2c7;
+    }
+
+    .alert-warning {
+        color: #664d03;
+        background-color: #fff3cd;
+        border-color: #ffecb5;
+    }
+
+    .alert-info {
+        color: #055160;
+        background-color: #cff4fc;
+        border-color: #b6effb;
+    }
+
+    .alert-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0.75rem 1rem;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        font-size: 1.25rem;
+        line-height: 1;
+        color: inherit;
+    }
+
+    /* Form grid layout */
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Form group styles */
+    .form-group {
+        margin-bottom: 0;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition:
+            border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+        border-color: #86b7fe;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+
+    /* Validation styles */
+    .validated-form input:invalid {
+        border-color: #dc3545;
+    }
+
+    .invalid-message {
+        display: none;
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 0.875em;
+        color: #dc3545;
+    }
+
+    .validated-form input:invalid~.invalid-message {
+        display: block;
+    }
+
+    .validated-form.was-validated input:invalid {
+        border-color: #dc3545;
+    }
+
+    .validated-form.was-validated input:invalid~.invalid-message {
+        display: block;
+    }
+
+    /* Form hint */
+    .form-hint {
+        margin-top: 0.25rem;
+        font-size: 0.875rem;
+        color: #6c757d;
+    }
+
+    /* Button styles */
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+        cursor: pointer;
+        background-color: #0d6efd;
+        border: 1px solid #0d6efd;
+        border-radius: 0.25rem;
+        transition:
+            color 0.15s ease-in-out,
+            background-color 0.15s ease-in-out,
+            border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
+    }
+
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+        border-color: #0a58ca;
+    }
+
+    .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+        cursor: pointer;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        transition:
+            color 0.15s ease-in-out,
+            background-color 0.15s ease-in-out,
+            border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
+    }
+
+    .btn-secondary:hover {
+        background-color: #f8f9fa;
+        border-color: #f8f9fa;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>

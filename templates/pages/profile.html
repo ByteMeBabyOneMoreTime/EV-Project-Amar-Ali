@@ -1,26 +1,60 @@
-{% extends "_base.html" %}
-{% load static %}
-
-{% block title %}
-{{ username }} - E-Rickshaw Suraksha Kendra Dashboard
-{% endblock title %}
-
-{% block body %}
-<div class="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-teal-100 py-8 px-4 sm:px-6 lg:px-8">
+{% extends "_base.html" %} {% load static %} {% block title %} {{ username }} -
+E-Rickshaw Suraksha Kendra Dashboard {% endblock title %} {% block body %}
+<div
+  class="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-teal-100 py-8 px-4 sm:px-6 lg:px-8"
+>
   <div class="max-w-6xl mx-auto space-y-8">
     <!-- Header Section -->
-    <div class="relative bg-gradient-to-r from-green-800 to-teal-700 rounded-xl shadow-2xl p-8 overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0.5px,transparent_1px)] bg-[size:24px_24px]"></div>
+    <div
+      class="relative bg-gradient-to-r from-green-800 to-teal-700 rounded-xl shadow-2xl p-8 overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0.5px,transparent_1px)] bg-[size:24px_24px]"
+      ></div>
       <div class="relative flex items-center space-x-6">
         <div class="relative flex-shrink-0">
-          <div class="absolute inset-0 rounded-full bg-green-500/30 blur-md animate-pulse"></div>
-          <img src="{% static 'logo.png' %}" alt="User Avatar" class="relative w-16 h-16 rounded-full border-2 border-green-400/60 shadow-lg">
+          <div
+            class="absolute inset-0 rounded-full bg-green-500/30 blur-md animate-pulse"
+          ></div>
+          <img
+            src="{% static 'logo.png' %}"
+            alt="User Avatar"
+            class="relative w-16 h-16 rounded-full border-2 border-green-400/60 shadow-lg"
+          />
         </div>
         <div>
-          <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-wide">Welcome, {{ username }}</h1>
-          <p class="mt-2 text-sm md:text-base text-green-100">Last Login: {{ lastlogin }}</p>
+          <h1
+            class="text-3xl md:text-4xl font-extrabold text-white tracking-wide"
+          >
+            Welcome, {{ username }}
+          </h1>
+          <p class="mt-2 text-sm md:text-base text-green-100">
+            Last Login: {{ lastlogin }}
+          </p>
         </div>
       </div>
+      {% if user.is_staff %}
+      <div class="absolute top-4 right-4">
+        <a
+          href="/admin/"
+          class="inline-flex items-center bg-white/20 hover:bg-white/30 text-white font-medium py-2 px-4 rounded-full transition-all duration-300 border border-white/30 hover:border-white/50 shadow-sm"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Admin Panel
+        </a>
+      </div>
+      {% endif %}
     </div>
 
     <!-- Main Content Grid -->
@@ -30,16 +64,48 @@
         <h2 class="text-2xl font-bold text-green-900 mb-6">User Information</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-700">
           <div class="space-y-4">
-            <p><span class="font-semibold text-green-800">Account Created:</span> <span class="text-gray-600">{{ created }}</span></p>
-            <p><span class="font-semibold text-green-800">User ID:</span> <span class="text-gray-600">{{ userid|default:"N/A" }}</span></p>
-            <p><span class="font-semibold text-green-800">Gender:</span> <span class="text-gray-600">{{ user_gender|default:"N/A" }}</span></p>
-            <p><span class="font-semibold text-green-800">Father's Name:</span> <span class="text-gray-600">{{ user_fathers_name|default:"N/A" }}</span></p>
+            <p>
+              <span class="font-semibold text-green-800">Account Created:</span>
+              <span class="text-gray-600">{{ created }}</span>
+            </p>
+            <p>
+              <span class="font-semibold text-green-800">User ID:</span>
+              <span class="text-gray-600">{{ userid|default:"N/A" }}</span>
+            </p>
+            <p>
+              <span class="font-semibold text-green-800">Gender:</span>
+              <span class="text-gray-600">{{ user_gender|default:"N/A" }}</span>
+            </p>
+            <p>
+              <span class="font-semibold text-green-800">Father's Name:</span>
+              <span class="text-gray-600"
+                >{{ user_fathers_name|default:"N/A" }}</span
+              >
+            </p>
           </div>
           <div class="space-y-4">
-            <p><span class="font-semibold text-green-800">Phone Number:</span> <span class="text-gray-600">{{ user_phonenumber|default:"N/A" }}</span></p>
-            <p><span class="font-semibold text-green-800">Aadhar Number:</span> <span class="text-gray-600">{{ user_aadharnumber|default:"N/A" }}</span></p>
-            <p><span class="font-semibold text-green-800">Address:</span> <span class="text-gray-600">{{ user_address|default:"N/A" }}</span></p>
-            <p><span class="font-semibold text-green-800">Agent Name:</span> <span class="text-gray-600">{{ agent_name|default:"N/A" }}</span></p>
+            <p>
+              <span class="font-semibold text-green-800">Phone Number:</span>
+              <span class="text-gray-600"
+                >{{ user_phonenumber|default:"N/A" }}</span
+              >
+            </p>
+            <p>
+              <span class="font-semibold text-green-800">Aadhar Number:</span>
+              <span class="text-gray-600"
+                >{{ user_aadharnumber|default:"N/A" }}</span
+              >
+            </p>
+            <p>
+              <span class="font-semibold text-green-800">Address:</span>
+              <span class="text-gray-600"
+                >{{ user_address|default:"N/A" }}</span
+              >
+            </p>
+            <p>
+              <span class="font-semibold text-green-800">Agent Name:</span>
+              <span class="text-gray-600">{{ agent_name|default:"N/A" }}</span>
+            </p>
           </div>
         </div>
       </div>
@@ -56,21 +122,29 @@
             <p class="text-lg font-semibold text-green-800">Days Left</p>
             <p class="text-2xl font-bold text-green-700 flex items-center">
               {{ packagedaysleft|default:"0" }}
-              <span class="ml-2 text-sm font-medium {% if packagedaysleft > 7 %}text-green-600{% elif packagedaysleft > 0 %}text-yellow-600{% else %}text-red-600{% endif %}">
-                {% if packagedaysleft > 7 %}Good{% elif packagedaysleft > 0 %}Low{% else %}Expired{% endif %}
+              <span
+                class="ml-2 text-sm font-medium {% if packagedaysleft > 7 %}text-green-600{% elif packagedaysleft > 0 %}text-yellow-600{% else %}text-red-600{% endif %}"
+              >
+                {% if packagedaysleft > 7 %}Good{% elif packagedaysleft > 0
+                %}Low{% else %}Expired{% endif %}
               </span>
             </p>
           </div>
           <div class="bg-green-50 p-4 rounded-lg">
             <p class="text-lg font-semibold text-green-800">Recharge Needed</p>
-            <p class="text-2xl font-bold {% if needforrecharge %}text-red-600{% else %}text-green-700{% endif %}">
+            <p
+              class="text-2xl font-bold {% if needforrecharge %}text-red-600{% else %}text-green-700{% endif %}"
+            >
               {% if needforrecharge %}Yes{% else %}No{% endif %}
             </p>
           </div>
           {% if needforrecharge %}
-            <a href="#" class="block text-center bg-gradient-to-r from-green-600 to-teal-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-gradient-to-r hover:from-green-700 hover:to-teal-700 transition-all duration-300 shadow-md hover:shadow-lg">
-              Recharge Now
-            </a>
+          <a
+            href="#"
+            class="block text-center bg-gradient-to-r from-green-600 to-teal-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-gradient-to-r hover:from-green-700 hover:to-teal-700 transition-all duration-300 shadow-md hover:shadow-lg"
+          >
+            Recharge Now
+          </a>
           {% endif %}
         </div>
       </div>
@@ -80,18 +154,31 @@
         <h2 class="text-2xl font-bold text-green-900 mb-6">Package Terms</h2>
         <div class="bg-green-50 p-6 rounded-lg">
           {% if perks %}
-            <ul class="space-y-3 text-green-700">
-              {% for perk in perks %}
-                <li class="flex items-start space-x-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>{{ perk.terms }}</span>
-                </li>
-              {% endfor %}
-            </ul>
+          <ul class="space-y-3 text-green-700">
+            {% for perk in perks %}
+            <li class="flex items-start space-x-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-green-600 mt-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              <span>{{ perk.terms }}</span>
+            </li>
+            {% endfor %}
+          </ul>
           {% else %}
-            <p class="text-green-700 italic">No terms and conditions found for this package.</p>
+          <p class="text-green-700 italic">
+            No terms and conditions found for this package.
+          </p>
           {% endif %}
         </div>
       </div>
@@ -100,47 +187,58 @@
       <div class="lg:col-span-3 bg-white rounded-xl shadow-lg p-6">
         <h2 class="text-2xl font-bold text-green-900 mb-6">Payment History</h2>
         {% if allpayments %}
-          <div class="overflow-x-auto">
-            <table class="min-w-full bg-white rounded-lg">
-              <thead class="bg-green-100">
-                <tr>
-                  <th class="py-3 px-4 text-left text-green-900 font-semibold">Payment ID</th>
-                  <th class="py-3 px-4 text-left text-green-900 font-semibold">Amount</th>
-                  <th class="py-3 px-4 text-left text-green-900 font-semibold">Date</th>
-                                <th class="py-3 px-4 text-left text-green-900 font-semibold">Payment Method</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for payment in allpayments %}
-                  <tr class="border-b border-green-200 hover:bg-green-50 transition-all duration-200">
-                    <td class="py-3 px-4 text-green-800">{{ payment.id }}</td>
-                    <td class="py-3 px-4 text-green-800">₹{{ payment.amount|default:payment.service.price }}</td>
-                    <td class="py-3 px-4 text-green-800">{{ payment.date }}</td>
-              {% if payment.method == "Online" %}
-              <td class="py-3 px-4 text-green-800">Online : {{ payment.online_payment_id}}</td>
-              {% else %}
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white rounded-lg">
+            <thead class="bg-green-100">
+              <tr>
+                <th class="py-3 px-4 text-left text-green-900 font-semibold">
+                  Payment ID
+                </th>
+                <th class="py-3 px-4 text-left text-green-900 font-semibold">
+                  Amount
+                </th>
+                <th class="py-3 px-4 text-left text-green-900 font-semibold">
+                  Date
+                </th>
+                <th class="py-3 px-4 text-left text-green-900 font-semibold">
+                  Payment Method
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for payment in allpayments %}
+              <tr
+                class="border-b border-green-200 hover:bg-green-50 transition-all duration-200"
+              >
+                <td class="py-3 px-4 text-green-800">{{ payment.id }}</td>
+                <td class="py-3 px-4 text-green-800">
+                  ₹{{ payment.amount|default:payment.service.price }}
+                </td>
+                <td class="py-3 px-4 text-green-800">{{ payment.date }}</td>
+                {% if payment.method == "Online" %}
+                <td class="py-3 px-4 text-green-800">
+                  Online : {{ payment.online_payment_id}}
+                </td>
+                {% else %}
                 <td class="py-3 px-4 text-green-800">Offline</td>
-              
-              {% endif %}
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
         {% else %}
-          <div class="bg-green-50 p-6 rounded-lg text-center">
-            <p class="text-green-700 italic">No payment records found.</p>
-          </div>
+        <div class="bg-green-50 p-6 rounded-lg text-center">
+          <p class="text-green-700 italic">No payment records found.</p>
+        </div>
         {% endif %}
       </div>
     </div>
   </div>
 </div>
-{% endblock body %}
-
-{% block script %}
+{% endblock body %} {% block script %}
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Add subtle hover effects to table rows (already handled via CSS)
   });
 </script>

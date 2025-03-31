@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url
 
 load_dotenv()
 
@@ -12,7 +13,6 @@ SECRET_KEY = 'django-insecure-oyh%e^l=fee0nyffjl(8n+x*)lvb$@xg&4j=*lla^)z-ci2n&5
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
-
 INSTALLED_APPS = [
     # Custom apps
     'home',
@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     'Cuser',
     # Admin panel apps and installed apps
     "unfold",  # before django.contrib.admin
-     
+
     'django_extensions',
     # Default apps
     'django.contrib.admin',
@@ -66,7 +66,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'website.wsgi.application'
 
 
-import dj_database_url
+
 
 DATABASES = {
     "default": dj_database_url.config(
