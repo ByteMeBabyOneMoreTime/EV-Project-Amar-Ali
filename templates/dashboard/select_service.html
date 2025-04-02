@@ -1,171 +1,149 @@
 {% load static %}
-<style>
-    /* Form Container */
-    .form-card {
-        max-width: 400px;
-        margin: auto;
-        padding: 2rem;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e5e7eb;
-    }
 
-    /* Form Heading */
-    .form-card h2 {
-        text-align: center;
-        color: #111827;
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-    }
-
-    /* Labels */
-    .form-card label {
-        display: block;
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: #111827;
-        margin-bottom: 0.5rem;
-    }
-
-    /* Input Fields and Select Dropdowns */
-    .form-card input,
-    .form-card select {
-        width: 100%;
-        padding: 0.75rem;
-        margin-bottom: 1rem;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        background: white;
-        color: #111827;
-        font-size: 0.875rem;
-        outline: none;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .form-card input:focus,
-    .form-card select:focus {
-        border-color: #4CAF50;
-        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
-    }
-
-    /* Online Payment ID Field */
-    #online_payment_id_field {
-        margin-top: 1rem;
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    /* Button */
-    .form-card button {
-        width: 100%;
-        padding: 0.75rem;
-        margin-top: 1rem;
-        border: none;
-        border-radius: 8px;
-        background: linear-gradient(135deg, #4CAF50, #45a049);
-        color: white;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .form-card button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
-    }
-
-    .form-card button:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
-    }
-
-    /* Optional: Add a subtle animation to the form container */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .form-card {
-        animation: fadeIn 0.5s ease-out;
-    }
-</style>
-
-<div class="form-card">
+<div class="form-card bg-gray-800 shadow-2xl rounded-xl p-6 max-w-md mx-auto my-10 fade-in">
+    <!-- Messages -->
     {% if messages %}
-    <div style="
-        max-width: 400px;
-        margin: 10px auto;
-        padding: 10px;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        text-align: center;">
-        
-        {% for message in messages %}
-            <div style="
-                margin-bottom: 8px;
-                padding: 12px;
-                border-radius: 6px;
-                color: white;
-                background: {% if message.tags == 'success' %} #4CAF50 {% elif message.tags == 'error' %} #E53935 {% elif message.tags == 'warning' %} #FFC107 {% else %} #2196F3 {% endif %};">
-                {{ message }}
-            </div>
-        {% endfor %}
-    </div>
-{% endif %}
+        <div class="space-y-3 mb-6">
+            {% for message in messages %}
+                <div class="flex justify-between items-center p-3 rounded-lg shadow-md fade-in {% if message.tags == 'success' %}bg-green-900 text-green-100{% elif message.tags == 'error' %}bg-red-900 text-red-100{% elif message.tags == 'warning' %}bg-yellow-900 text-yellow-100{% else %}bg-blue-900 text-blue-100{% endif %}">
+                    <span>{{ message }}</span>
+                    <button type="button" class="text-current hover:text-white text-xl font-bold">×</button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
-    <h2>Select a Service</h2>
+    <!-- Form Heading -->
+    <h2 class="text-2xl font-bold text-gray-200 text-center mb-6">Select a Service</h2>
+
+    <!-- Form -->
     <form hx-post="{% url 'select_service' user_id=customer_user.id %}" 
           hx-target="#swap_admin" 
-          hx-swap="innerHTML">
+          hx-swap="innerHTML" 
+          class="space-y-6">
         {% csrf_token %}
-        
+
         <!-- Service Dropdown -->
-        <label for="service">Choose a service:</label>
-        <select name="service" id="service" required>
-            {% for service in services %}
-            <option value="{{ service.id }}">{{ service.name }} - ₹{{ service.price }}</option>
-            {% endfor %}
-        </select>
+        <div class="space-y-2">
+            <label for="service" class="block text-sm font-medium text-gray-300">Choose a service*</label>
+            <select name="service" id="service" required 
+                    class="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all">
+                {% for service in services %}
+                    <option value="{{ service.id }}">{{ service.name }} - ₹{{ service.price }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
         <!-- Payment Method Dropdown -->
-        <label for="payment_method">Payment Method:</label>
-        <select name="payment_method" id="payment_method" required onchange="toggleOnlinePaymentId()">
-            <option value="Offline">Offline</option>
-            <option value="Online">Online</option>
-        </select>
+        <div class="space-y-2">
+            <label for="payment_method" class="block text-sm font-medium text-gray-300">Payment Method*</label>
+            <select name="payment_method" id="payment_method" required 
+                    onchange="toggleOnlinePaymentId()"
+                    class="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all">
+                <option value="Offline">Offline</option>
+                <option value="Online">Online</option>
+            </select>
+        </div>
 
         <!-- Online Payment ID Field -->
-        <div id="online_payment_id_field">
-            <img src="{% static 'images/QR.jpeg' %}" alt="QR for Payment">
-            <label for="online_payment_id">Online Payment ID:</label>
-            <input type="text" name="online_payment_id" id="online_payment_id">
+        <div id="online_payment_id_field" class="space-y-4 transition-all duration-300 ease-in-out hidden">
+            <img src="{% static 'images/QR.jpeg' %}" alt="QR for Payment" 
+                 class="w-32 h-32 mx-auto rounded-md shadow-md">
+            <div class="space-y-2">
+                <label for="online_payment_id" class="block text-sm font-medium text-gray-300">Online Payment ID</label>
+                <input type="text" name="online_payment_id" id="online_payment_id" 
+                       class="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all">
+            </div>
         </div>
 
         <!-- Submit Button -->
-        <button type="submit">Proceed to Payment</button>
+        <button type="submit" 
+                class="w-full bg-gradient-to-r from-green-600 to-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl hover:from-green-700 hover:to-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 transition-all transform hover:-translate-y-1 flex items-center justify-center">
+            <span class="submit-text">Proceed to Payment</span>
+            <span class="loading-text hidden flex items-center">
+                <svg class="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="4" opacity="0.3"/>
+                    <path fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
+                </svg>
+                Processing...
+            </span>
+        </button>
     </form>
 </div>
 
+<style>
+  /* Custom Tailwind Supplements */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* HTMX Loading State */
+  button.htmx-request .submit-text {
+    display: none;
+  }
+
+  button.htmx-request .loading-text {
+    display: flex !important;
+  }
+
+  /* Ensure button background persists */
+  button {
+    background: inherit;
+  }
+</style>
+
 <script>
+    // Toggle Online Payment ID Field
     function toggleOnlinePaymentId() {
-        var method = document.getElementById("payment_method").value;
-        var onlineField = document.getElementById("online_payment_id_field");
-        
+        const method = document.getElementById("payment_method").value;
+        const onlineField = document.getElementById("online_payment_id_field");
         if (method === "Online") {
-            onlineField.style.display = "block";
+            onlineField.classList.remove('hidden');
+            onlineField.style.opacity = '1';
+            onlineField.style.transform = 'translateY(0)';
         } else {
-            onlineField.style.display = "none";
+            onlineField.style.opacity = '0';
+            onlineField.style.transform = 'translateY(-10px)';
+            setTimeout(() => onlineField.classList.add('hidden'), 300); // Match transition duration
         }
     }
 
-    // Initialize the form state
-    toggleOnlinePaymentId();
+    // Initialize Components
+    function initComponents() {
+        // Message Close Buttons
+        document.querySelectorAll('.form-card button:not([type="submit"])').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.classList.add('hidden');
+            });
+        });
+
+        // Initial toggle state
+        toggleOnlinePaymentId();
+    }
+
+    // Run on Load and After HTMX Swap
+    document.addEventListener('DOMContentLoaded', initComponents);
+    document.body.addEventListener('htmx:afterSwap', initComponents);
+
+    // HTMX Loading State
+    document.body.addEventListener('htmx:beforeRequest', () => {
+        const submitBtn = document.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.classList.add('htmx-request');
+            submitBtn.disabled = true;
+        }
+    });
+
+    document.body.addEventListener('htmx:afterRequest', () => {
+        const submitBtn = document.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.classList.remove('htmx-request');
+            submitBtn.disabled = false;
+        }
+    });
 </script>

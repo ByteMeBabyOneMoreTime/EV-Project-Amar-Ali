@@ -1,99 +1,49 @@
-<style>
-    /* Success Card Container */
-    .success-card {
-        max-width: 400px;
-        margin: auto;
-        padding: 2rem;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e5e7eb;
-        text-align: center;
-    }
-
-    /* Heading */
-    .success-card h2 {
-        color: #4CAF50;
-        font-size: 1.75rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-
-    /* Message */
-    .success-card p {
-        color: #111827;
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    /* Link Button */
-    .success-card a {
-        display: inline-block;
-        padding: 0.75rem 1.5rem;
-        background: linear-gradient(135deg, #4CAF50, #45a049);
-        color: white;
-        font-size: 1rem;
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: 8px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .success-card a:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
-    }
-
-    .success-card a:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
-    }
-
-    /* Optional: Add a subtle animation to the card */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .success-card {
-        animation: fadeIn 0.5s ease-out;
-    }
-</style>
-
-<div class="success-card">
-    {% if messages %}
-    <div style="
-        max-width: 400px;
-        margin: 10px auto;
-        padding: 10px;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        text-align: center;">
-        
-        {% for message in messages %}
-            <div style="
-                margin-bottom: 8px;
-                padding: 12px;
-                border-radius: 6px;
-                color: white;
-                background: {% if message.tags == 'success' %} #4CAF50 {% elif message.tags == 'error' %} #E53935 {% elif message.tags == 'warning' %} #FFC107 {% else %} #2196F3 {% endif %};">
-                {{ message }}
-            </div>
-        {% endfor %}
+{% load static %}
+<div class="success-card bg-gray-800 shadow-2xl rounded-xl p-8 max-w-md mx-auto my-12 text-center fade-in">
+  <!-- Messages -->
+  {% if messages %}
+  <div class="space-y-3 mb-6">
+    {% for message in messages %}
+    <div class="flex justify-between items-center p-3 rounded-lg shadow-md fade-in {% if message.tags == 'success' %}bg-green-900 text-green-100{% elif message.tags == 'error' %}bg-red-900 text-red-100{% elif message.tags == 'warning' %}bg-yellow-900 text-yellow-100{% else %}bg-blue-900 text-blue-100{% endif %}">
+      <span>{{ message }}</span>
+      <button type="button" class="text-current hover:text-white text-xl font-bold">×</button>
     </div>
-{% endif %}
-
-
-    <h2>Payment Successful</h2>
-    <p>Thank you, {{ customer_user.username }}! Your payment has been processed successfully.</p>
-    <p>We Will reach you through the sms/phone calls to confirm the registration</p>
-    <a href="/admin">Return to Dashboard</a>
-
-    
+    {% endfor %}
+  </div>
+  {% endif %}
+  <!-- Success Content -->
+  <h2 class="text-3xl font-bold text-green-500 mb-4">Payment Successful</h2>
+  <p class="text-gray-200 text-lg mb-4">
+    Thank you,
+    <span class="font-semibold text-green-400">{{ customer_user.username }}</span>! Your payment has been processed successfully.
+  </p>
+  <p class="text-gray-300 text-sm mb-6">We will reach you via SMS or phone call to confirm your registration.</p>
+  <a href="/admin" class="inline-block bg-gradient-to-r from-green-600 to-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl hover:from-green-700 hover:to-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 transition-all transform hover:-translate-y-1">
+    Return to Dashboard
+  </a>
 </div>
+<style>
+  /* Custom Tailwind Supplements */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+<script>
+  // Initialize Components (for message close buttons)
+    function initComponents() {
+        document.querySelectorAll('.success-card button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.classList.add('hidden');
+            });
+        });
+    }
+
+    // Run on Load and After HTMX Swap
+    document.addEventListener('DOMContentLoaded', initComponents);
+    document.body.addEventListener('htmx:afterSwap', initComponents);
+</script>

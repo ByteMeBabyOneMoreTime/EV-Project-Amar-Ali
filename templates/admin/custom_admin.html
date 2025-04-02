@@ -1,48 +1,119 @@
-<style>
-    .card-button {
-        background: linear-gradient(135deg, #4CAF50, #45a049);
-        color: white;
-        border: none;
-        padding: 15px 30px;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: inline-block;
-        text-align: center;
-        text-decoration: none;
-    }
+{% load static %}
 
-    .card-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        background: linear-gradient(135deg, #45a049, #4CAF50);
-    }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - E-Rickshaw Suraksha Kendra</title>
+    <style>
+        :root {
+            --primary: #10B981;
+            --primary-hover: #059669;
+            --bg-dark: #111827;
+            --card-dark: #1F2937;
+            --text-primary: #F9FAFB;
+            --text-secondary: #D1D5DB;
+            --border-color: #374151;
+        }
 
-    .card-button:active {
-        transform: translateY(0);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-</style>
-{% include "components/loader.html" %}
+        body {
+            background-color: var(--bg-dark);
+        }
 
+        .gradient-button {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            transition: all 0.3s ease-in-out;
+        }
 
-<div id="swap_admin" hx-indicator="#loader">
-    {% if messages %} {% for message in messages %}
-    <div class="alert alert-{{ message.tags }}">
-        {{ message }}
-        <button type="button" class="alert-close">×</button>
-    </div>
-    {% endfor %} {% endif %}
-    <div hx-get="{% url 'employee_list' %}" hx-swap="innerHTML" hx-trigger="load"></div>
-    <button class="card-button" hx-get="{% url 'register_customer' %}" hx-target="#swap_admin" hx-swap="innerHTML">
-        Register Customer
-    </button>
-    {% if user.is_superuser %}
-    <button class="card-button" hx-get="{% url 'create_employee' %}" hx-target="#swap_admin" hx-swap="innerHTML">
-        Register Employee
-    </button>
-    {% endif %}
-</div>
+        .gradient-button:hover {
+            background: linear-gradient(135deg, var(--primary-hover), var(--primary));
+            transform: translateY(-2px);
+        }
+
+        .gradient-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--primary-hover));
+            border-radius: 2px;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+<body class="text-gray-100 antialiased">
+    <!-- Header -->
+    <header class="bg-gray-800 shadow-lg sticky top-0 rounded-xl">
+        <div class="max-w-7xl  mx-auto px-4 py-4 flex items-center gap-4">
+            <img src="{% static 'logo.png' %}" alt="E-Rickshaw Suraksha Kendra Logo" class="w-12 h-12 rounded-full object-cover border-2 border-green-500">
+            <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">E-Rickshaw Suraksha Kendra</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-10">
+        <!-- Block Title -->
+        <h2 class="relative text-6xl md:text-4xl font-extrabold text-green-500 text-center mb-10 gradient-title fade-in">
+            Admin Dashboard
+        </h2>
+
+        <!-- Admin Swap Section -->
+        <div id="swap_admin" class="space-y-6" hx-indicator="#loader">
+            <!-- Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="bg-gray-700 text-gray-300 p-4 rounded-lg shadow-md border-l-4 border-green-500 relative fade-in">
+                        {{ message }}
+                        <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-gray-100 text-xl">&times;</button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Buttons -->
+            <div class="flex flex-wrap justify-center gap-6 fade-in">
+                <button class="gradient-button text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50" 
+                        hx-get="{% url 'register_customer' %}" hx-target="#swap_admin" hx-swap="innerHTML">
+                    Register Customer
+                </button>
+                {% if user.is_superuser %}
+                    <button class="gradient-button text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50" 
+                            hx-get="{% url 'create_employee' %}" hx-target="#swap_admin" hx-swap="innerHTML">
+                        Register Employee
+                    </button>
+                {% endif %}
+            </div>
+
+            <!-- Employee List (Superuser Only) -->
+            {% if user.is_superuser %}
+                <div class="bg-gray-700 p-6 rounded-lg shadow-md border border-gray-600 fade-in" 
+                     hx-get="{% url 'employee_list' %}" hx-swap="innerHTML" hx-trigger="load">
+                    <!-- Employee list will load here -->
+                </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <!-- Loader Component -->
+    {% include "components/loader.html" %}
+
+    <!-- Scripts -->
+    <script>
+        // Alert Close Functionality
+        document.querySelectorAll('.alert-close, button:contains("×")').forEach(button => {
+            button.addEventListener('click', () => {
+                button.parentElement.style.display = 'none';
+            });
+        });
+    </script>
+          <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</body>
+

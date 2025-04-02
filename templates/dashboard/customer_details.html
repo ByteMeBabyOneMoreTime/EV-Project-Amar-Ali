@@ -1,116 +1,117 @@
+{% load static %}
+<div class="form-container bg-gray-800 shadow-xl rounded-lg p-6 max-w-md mx-auto my-10 fade-in" id="customer-form-container">
+  <!-- Messages -->
+  {% if messages %}
+  <div class="space-y-3 mb-6">
+    {% for message in messages %}
+    <div class="flex justify-between items-center p-3 rounded-lg shadow-md fade-in {% if message.tags == 'success' %}bg-green-900 text-green-100{% elif message.tags == 'error' %}bg-red-900 text-red-100{% elif message.tags == 'warning' %}bg-yellow-900 text-yellow-100{% else %}bg-blue-900 text-blue-100{% endif %}">
+      <span>{{ message }}</span>
+      <button type="button" class="text-current hover:text-white text-xl font-bold">×</button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <!-- Form -->
+  <form hx-post="{% url 'add_customer_details' user_id=customer_user.id %}" hx-target="#swap_admin" hx-swap="innerHTML" class="space-y-6">
+    {% csrf_token %}
+    <!-- Gender Dropdown -->
+    <div class="space-y-2">
+      <label for="gender" class="block text-sm font-medium text-gray-300">Gender*</label>
+      <select name="gender" id="gender" required class="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all">
+        <option value="Male" selected>Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <!-- Father's Name -->
+    <div class="space-y-2">
+      <label for="father_name" class="block text-sm font-medium text-gray-300">Father's Name*</label>
+      <input type="text" name="father_name" id="father_name" placeholder="Father's Name" required class="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all">
+    </div>
+    <!-- Phone Number -->
+    <div class="space-y-2">
+      <label for="phone_number" class="block text-sm font-medium text-gray-300">Phone Number*</label>
+      <input type="text" name="phone_number" id="phone_number" placeholder="Phone Number" required class="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all">
+    </div>
+    <!-- Aadhar Number -->
+    <div class="space-y-2">
+      <label for="aadhar_number" class="block text-sm font-medium text-gray-300">Aadhar Number*</label>
+      <input type="text" name="aadhar_number" id="aadhar_number" placeholder="Aadhar Number" required class="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all">
+    </div>
+    <!-- Address -->
+    <div class="space-y-2">
+      <label for="address" class="block text-sm font-medium text-gray-300">Address*</label>
+      <input type="text" name="address" id="address" placeholder="Address" required class="w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all">
+    </div>
+    <!-- Submit Button -->
+    <div class="w-full bg-gradient-to-r from-green-600 to-green-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:from-green-700 hover:to-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 transition-all flex items-center justify-center">
+      <button type="submit" class="w-full bg-gradient-to-r from-green-600 to-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl hover:from-green-700 hover:to-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 transition-all flex items-center justify-center">
+        <span class="submit-text">Submit</span>
+        <span class="loading-text hidden flex items-center">
+          <svg class="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="4" opacity="0.3"/>
+            <path fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
+          </svg>
+          Processing...
+        </span>
+      </button>
+    </div>
+  </form>
+</div>
 <style>
-    /* Form Container */
-    .form-card {
-        max-width: 400px;
-        margin: auto;
-        padding: 2rem;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e5e7eb;
-    }
-
-    /* Input Fields and Select Dropdown */
-    .form-card input,
-    .form-card select {
-        width: 100%;
-        padding: 0.75rem;
-        margin-bottom: 1rem;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        background: white;
-        color: #111827;
-        font-size: 0.875rem;
-        outline: none;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .form-card input:focus,
-    .form-card select:focus {
-        border-color: #4CAF50;
-        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
-    }
-
-    /* Button */
-    .form-card button {
-        width: 100%;
-        padding: 0.75rem;
-        margin-top: 1rem;
-        border: none;
-        border-radius: 8px;
-        background: linear-gradient(135deg, #4CAF50, #45a049);
-        color: white;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .form-card button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
-    }
-
-    .form-card button:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
-    }
-
-    /* Optional: Add a subtle animation to the form container */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .form-card {
+  /* Custom Tailwind Supplements */
+    .fade-in {
         animation: fadeIn 0.5s ease-out;
     }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HTMX Loading State */
+    button.htmx-request .submit-text {
+        display: none;
+    }
+
+    button.htmx-request .loading-text {
+        display: flex !important;
+    }
+
+    /* Ensure button background persists */
+    button {
+        background: inherit;
+    }
 </style>
+<script>
+  // Initialize Components
+    function initComponents() {
+        // Message Close Buttons
+        document.querySelectorAll('.form-container button:not([type="submit"])').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.classList.add('hidden');
+            });
+        });
+    }
 
-<div class="form-card">
-    {% if messages %}
-    <div style="
-        max-width: 400px;
-        margin: 10px auto;
-        padding: 10px;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        text-align: center;">
-        
-        {% for message in messages %}
-            <div style="
-                margin-bottom: 8px;
-                padding: 12px;
-                border-radius: 6px;
-                color: white;
-                background: {% if message.tags == 'success' %} #4CAF50 {% elif message.tags == 'error' %} #E53935 {% elif message.tags == 'warning' %} #FFC107 {% else %} #2196F3 {% endif %};">
-                {{ message }}
-            </div>
-        {% endfor %}
-    </div>
-{% endif %}
+    // Run on Load and After HTMX Swap
+    document.addEventListener('DOMContentLoaded', initComponents);
+    document.body.addEventListener('htmx:afterSwap', initComponents);
 
-    <form hx-post="{% url 'add_customer_details' user_id=customer_user.id %}" hx-target="#swap_admin" hx-swap="innerHTML">
-        {% csrf_token %}
-        
-        <!-- Gender Dropdown -->
-        <select name="gender" required>
-            <option value="Male" selected>Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-        </select>
+    // HTMX Loading State
+    document.body.addEventListener('htmx:beforeRequest', () => {
+        const submitBtn = document.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.classList.add('htmx-request');
+            submitBtn.disabled = true;
+        }
+    });
 
-        <input type="text" name="father_name" placeholder="Father's Name" required />
-        <input type="text" name="phone_number" placeholder="Phone Number" required />
-        <input type="text" name="aadhar_number" placeholder="Aadhar Number" required />
-        <input type="text" name="address" placeholder="Address" required />
-        
-        <button type="submit">Submit</button>
-    </form>
-</div>
+    document.body.addEventListener('htmx:afterRequest', () => {
+        const submitBtn = document.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.classList.remove('htmx-request');
+            submitBtn.disabled = false;
+        }
+    });
+</script>
